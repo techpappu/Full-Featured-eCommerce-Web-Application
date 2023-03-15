@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->integer('shipping_id');
-            $table->integer('discount_id');
+            $table->integer('discount_id')->nullable();
             $table->date('invoice_date');
             $table->double('gross_total', 15, 2);
             $table->double('shipping_total', 15, 2);
             $table->double('discount_total', 15, 2)->nullable();
-            $table->double('tax_total', 15, 2)->nullable();
-            $table->double('grand_total', 15, 2)->nullable();
+            $table->double('tax_total', 15, 2);
+            $table->double('grand_total', 15, 2);
             $table->string('status', 15);
             $table->timestamps();
         });
