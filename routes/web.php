@@ -36,25 +36,25 @@ Route::post('/admin/user/create', \App\Http\Controllers\Backend\User\Create::cla
 Route::get('/admin/user/update/{id}', \App\Http\Controllers\Backend\User\Update::class)->name('admin.user.update');
 Route::post('/admin/user/update/{id}', \App\Http\Controllers\Backend\User\Update::class)->name('admin.user.post.update');
 Route::post('/admin/user/delete/{id}', \App\Http\Controllers\Backend\User\Delete::class)->name('admin.user.delete');
-/*
+
 # Back-end roles - only admin role users will be accessing this module in backend to manage roles
-Route::get('/admin/role', \App\Http\Controllers\Backend\Role\Index::class);
-Route::get('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::class);
-Route::post('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::class);
-Route::get('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class);
-Route::post('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class);
-Route::post('/admin/role/delete/{id}', \App\Http\Controllers\Backend\Role\Delete::class);
+Route::get('/admin/role', \App\Http\Controllers\Backend\Role\Index::class)->name('admin.role');
+Route::get('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::class)->name('admin.role.create');
+Route::post('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::class)->name('admin.role.post.create');
+Route::get('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.update');
+Route::post('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.post.update');
+Route::post('/admin/role/delete/{id}', \App\Http\Controllers\Backend\Role\Delete::class)->name('admin.role.delete');
 
 # Back-end permissions - only admin role users will be accessing this module in backend to manage permissions
-Route::get('/admin/permission', \App\Http\Controllers\Backend\Permission\Index::class);
-Route::get('/admin/permission/create', \App\Http\Controllers\Backend\Permission\Create::class);
-Route::post('/admin/permission/create', \App\Http\Controllers\Backend\Permission\Create::class);
-Route::get('/admin/permission/update/{id}', \App\Http\Controllers\Backend\Permission\Update::class);
-Route::post('/admin/permission/update/{id}', \App\Http\Controllers\Backend\Permission\Update::class);
-Route::post('/admin/permission/delete/{id}', \App\Http\Controllers\Backend\Permission\Delete::class);
-Route::get('/admin/permission/attach/{id}/{role_id}', \App\Http\Controllers\Backend\Permission\Attach::class);
-Route::post('/admin/permission/attach/{id}/{role_id}', \App\Http\Controllers\Backend\Permission\Attach::class);
-*/
+Route::get('/admin/permission', \App\Http\Controllers\Backend\Permission\Index::class)->name('admin.permission');
+Route::get('/admin/permission/create', \App\Http\Controllers\Backend\Permission\Create::class)->name('admin.permission.create');
+Route::post('/admin/permission/create', \App\Http\Controllers\Backend\Permission\Create::class)->name('admin.permission.post.create');
+Route::get('/admin/permission/update/{id}', \App\Http\Controllers\Backend\Permission\Update::class)->name('admin.permission.update');
+Route::post('/admin/permission/update/{id}', \App\Http\Controllers\Backend\Permission\Update::class)->name('admin.permission.post.update');
+Route::post('/admin/permission/delete/{id}', \App\Http\Controllers\Backend\Permission\Delete::class)->name('admin.permission.delete');
+// Route::get('/admin/permission/attach/{id}/{role_id}', \App\Http\Controllers\Backend\Permission\Attach::class);
+// Route::post('/admin/permission/attach/{id}/{role_id}', \App\Http\Controllers\Backend\Permission\Attach::class);
+
 # Back-end pages - this section will be used to manage shop default pages and create new pages
 Route::get('/admin/page', \App\Http\Controllers\Backend\Page\Index::class)->name('admin.page');
 Route::get('/admin/page/create', \App\Http\Controllers\Backend\Page\Create::class)->name('admin.page.create');
@@ -111,11 +111,12 @@ Route::post('/admin/order/create', \App\Http\Controllers\Backend\Product\Create:
 Route::get('/admin/order/update/{id}', \App\Http\Controllers\Backend\Product\Update::class);
 Route::post('/admin/order/update/{id}', \App\Http\Controllers\Backend\Product\Update::class);
 Route::get('/admin/order/view/{id}', \App\Http\Controllers\Backend\Product\View::class);
+*/
 
 # Back-end settings - this will be used to view and update shop settings
-Route::get('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class);
-Route::post('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class);
-*/
+Route::get('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.setting');
+Route::post('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.post.setting');
+
 
 
 /*
