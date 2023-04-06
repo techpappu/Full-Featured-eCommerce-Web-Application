@@ -4,12 +4,12 @@ namespace App\Services\Backend;
 
 use Illuminate\Http\Request;
 
-class Page
+class Permission
 {
     public function rows(Int $per_page)
     {
 
-        $rows = \Facades\App\Models\Page::paginate($per_page);
+        $rows = \Facades\Spatie\Permission\Models\Permission::paginate($per_page);
 
         return $rows;
 
@@ -18,38 +18,38 @@ class Page
     public function get(Int $id)
     {
 
-        $row = \Facades\App\Models\Page::find($id);
+        $row = \Facades\Spatie\Permission\Models\Permission::find($id);
 
-        if (empty($row->id)) return redirect()->route('admin.page')->with('warning','Data not found!');
+        if (empty($row->id)) return redirect()->route('admin.permission')->with('warning','Data not found!');
 
         return $row;
 
     }
 
-
     public function create(Request $request)
     {
         
         $request->validate([
-            'status' =>'required',
-            'title' =>'required|min:4',
+            'name' =>'required|min:3|',
+            'guard_name'=>'required|',
+
         ]);
-        $data = $request->only(['title','status','content']);
-        $row = \Facades\App\Models\Page::create($data);
+        $data = $request->only(['name','guard_name']);
+        $row = \Facades\Spatie\Permission\Models\Permission::create($data);
         if(!empty($row->id)) return true;
         return false;
 
     }
     public function update(Int $id,Request $request)
     {
-        $row = \Facades\App\Models\Page::find($id);
+        $row = \Facades\Spatie\Permission\Models\Permission::find($id);
+        
         $request->validate([
-            'status' =>'required',
-            'title' =>'required|min:4',
+            'name' =>'required|min:3',
+            'guard_name'=>'required',
         ]);
-        $data = $request->only(['title','status','content']);
         
-        
+        $data = $request->only(['name','guard_name']);
 
         if (!empty($row->id)) {
             $row->update($data);
@@ -59,10 +59,9 @@ class Page
         return false;
 
     }
-    
     public function delete($request)
     {
-        $data=\Facades\App\Models\Page::find($request->id);
+        $data=\Facades\Spatie\Permission\Models\Permission::find($request->id);
         
         if(!empty($data->id)){
             $data->delete();

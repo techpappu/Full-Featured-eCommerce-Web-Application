@@ -14,11 +14,11 @@
         <form action="{{route('admin.role.post.create')}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="name">Role Name</label>
+                <label for="name" class="required">Role Name</label>
                 <input type="text" class="form-control" value="{{ request()->input('name', old('name')) }}" id="name" name="name">
             </div>
             <div class="form-group">
-                <label for="guard_name">Guard Name</label>
+                <label for="guard_name" class="required">Guard Name</label>
                 <input type="text" class="form-control" value="{{ request()->input('guard_name', old('guard_name')) }}" id="guard_name" name="guard_name">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -45,6 +45,10 @@
     @section("css")
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

@@ -12,20 +12,20 @@
         <form action="{{route('admin.user.post.create')}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                <label for="name" class="required">Name</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{ request()->input('name', old('name')) }}" placeholder="Enter name">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
+                <label for="exampleInputEmail1" class="required">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" value="{{ request()->input('email', old('email')) }}" name="email" placeholder="Enter email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="exampleInputPassword1" class="required">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name="password"
                     placeholder="Password">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword2">Confirm Password</label>
+                <label for="exampleInputPassword2" class="required">Confirm Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword2" name="password_confirmation"
                     placeholder="Password">
             </div>
@@ -57,6 +57,10 @@
     @section("css")
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

@@ -16,7 +16,7 @@
         <form action="{{route('admin.page.post.update',$data['row']->id)}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="status">Status</label>
+                <label for="status" class="required">Status</label>
                 <select name="status" class="custom-select" id="status">
                     <option selected disabled hidden>Select A Status</option>
                     <option value="draft"  {{ $data['row']->status=='draft' ? 'selected' : '' }}>draft</option>
@@ -24,12 +24,12 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="name">Page Name</label>
-                <input type="text" class="form-control" id="title" value="{{$data['row']->title}}" name="title" placeholder="Enter Name">
+                <label for="name" class="required">Page Title</label>
+                <input type="text" class="form-control" id="title" value="{{$data['row']->title}}" name="title" placeholder="Enter Title">
             </div>
             <div class="form-group">
                 <label for="summernote">Description</label>
-                <textarea name="" id="summernote">{{$data['row']->description}}</textarea>
+                <textarea name="content" id="summernote">{{$data['row']->content}}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">update</button>
         </form>
@@ -62,6 +62,10 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

@@ -138,7 +138,7 @@
                 </li>
                 <!--- Settings sidebar -->
                 <li>
-                    <a href="{{route('admin.setting')}}" class="active">
+                    <a href="{{route('admin.setting')}}">
                         <i class="fas fa-tools"></i>
                         <span> Settings </span>
                     </a>

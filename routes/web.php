@@ -115,7 +115,7 @@ Route::get('/admin/order/view/{id}', \App\Http\Controllers\Backend\Product\View:
 
 # Back-end settings - this will be used to view and update shop settings
 Route::get('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.setting');
-Route::post('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.post.setting');
+Route::post('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.setting.post.update');
 
 
 

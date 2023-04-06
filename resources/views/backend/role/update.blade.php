@@ -8,17 +8,17 @@
     @endsection
     @section('content')
     <div class="card-box overflow-hidden">
-
+        <x-back-end.message></x-back-end.message>
         <x-back-end.validationAlert></x-back-end.validationAlert>
 
-        <form action="{{route('admin.role.post.create',$data['row']->id)}}" method="POST" id="form">
+        <form action="{{route('admin.role.post.update',$data['row']->id)}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="name">Role Name</label>
+                <label for="name" class="required">Role Name</label>
                 <input type="text" class="form-control" id="name" value="{{$data['row']->name}}" name="name">
             </div>
             <div class="form-group">
-                <label for="guard_name">Guard Name</label>
+                <label for="guard_name" class="required">Guard Name</label>
                 <input type="text" class="form-control" value="{{$data['row']->guard_name}}" id="guard_name" name="guard_name">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
@@ -45,6 +45,10 @@
     @section("css")
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

@@ -14,24 +14,24 @@
         <form action="{{route('admin.discount.post.update',$data['row']->id)}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="label">Discount Label</label>
+                <label for="label" class="required">Discount Label</label>
                 <input type="text" class="form-control" id="label" name="label" value="{{$data['row']->label}}">
             </div>
-            <div class="d-flex">
-                <div class="form-group col-3">
-                    <label for="code">Discount Code</label>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="code" class="required">Discount Code</label>
                     <input type="text" class="form-control" id="code" name="code" value="{{$data['row']->code}}">
                 </div>
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label for="quantity">Discount Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" value="{{$data['row']->quantity}}">
                 </div>
-                <div class="form-group col-3">
-                    <label for="rate">Discount Rate %</label>
+                <div class="form-group col-md-3">
+                    <label for="rate" class="required">Discount Rate %</label>
                     <input type="number" class="form-control" id="rate" name="rate" value="{{$data['row']->rate}}" placeholder="example:13 12.4 15.6">
                 </div>
-                <div class="form-group col-3">
-                    <label for="status">Status</label>
+                <div class="form-group col-md-3">
+                    <label for="status" class="required">Status</label>
                     <select name="status" class="custom-select" id="status">
                         <option value="active" {{ $data['row']->status=='active' ? 'selected' : '' }}>Active</option>
                     <option value="inactive" {{ $data['row']->status=='inactive' ? 'selected' : '' }}>Inactive</option>
@@ -77,6 +77,10 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

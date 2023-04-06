@@ -14,16 +14,16 @@
         <form action="{{route('admin.tax.post.create')}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="label">Label</label>
-                <input type="text" class="form-control" name="label">
+                <label for="label" class="required">Label</label>
+                <input type="text" class="form-control" value="{{ request()->input('label', old('label')) }}" name="label">
             </div>
             <div class="form-group">
-                <label for="rate">Rate</label><br>
+                <label for="rate" class="required">Rate</label><br>
                 <small class="text-muted">Enter the rate only in % example:15.5 or 12.5</small>
-                <input type="number" class="form-control" id="rate" name="rate" placeholder="example:15.5 or 12.5">
+                <input type="number" class="form-control" value="{{ request()->input('rate', old('rate')) }}" id="rate" name="rate" placeholder="example:15.5 or 12.5">
             </div>
             <div class="form-group">
-                <label for="status">Status</label>
+                <label for="status" class="required">Status</label>
                 <select name="status" class="custom-select" id="status">
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
@@ -57,7 +57,10 @@
         .error {
             color: red;
         }
-
+        .required:after {
+            content:" *";
+            color: red;
+        }
     </style>
     @endsection
 </x-back-end.master>

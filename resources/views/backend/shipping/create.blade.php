@@ -14,15 +14,15 @@
         <form action="{{route('admin.shipping.post.create')}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="label">Label</label>
-                <input type="text" class="form-control" name="label">
+                <label for="label" class="required">Label</label>
+                <input type="text" class="form-control" value="{{ request()->input('label', old('label')) }}" name="label">
             </div>
             <div class="form-group">
-                <label for="amount">Amount</label><br>
-                <input type="number" class="form-control" id="amount" name="amount" placeholder="example:15.5 or 12.5">
+                <label for="amount" class="required">Amount</label>
+                <input type="number" class="form-control" id="amount" value="{{ request()->input('amount', old('amount')) }}" name="amount" placeholder="example:15.5 or 12.5">
             </div>
             <div class="form-group">
-                <label for="status">Status</label>
+                <label for="status" class="required">Status</label>
                 <select name="status" class="custom-select" id="status">
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
@@ -54,6 +54,10 @@
     @section("css")
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

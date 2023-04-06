@@ -12,6 +12,17 @@ class Index extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        if($request->isMethod('POST')){
+            if (\Facades\App\Services\Backend\Setting::update($request)){
+                return redirect()->route('admin.setting')->with('success','Settings has been successfully updated');
+            } else{
+                return redirect()->route('admin.setting')->with('danger','Settings can not be updated!');
+            }
+        }
+
+        $data=[];
+        $data['row']=\Facades\App\Models\Setting::first();
+
+        return view('backend.setting.index',compact('data'));
     }
 }

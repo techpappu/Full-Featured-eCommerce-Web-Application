@@ -21,10 +21,6 @@ class Create extends Controller
                 return redirect()->route('admin.role')->with('danger','Role can not be created!');
             }
         }
-        // $data=[];
-        // $data['name'] = $request->old('name');
-        // $data['guard_name'] = $request->old('guard_name');
-        // return view('backend.role.create',compact('data'));
         return view('backend.role.create');
     }
 }

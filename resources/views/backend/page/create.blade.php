@@ -14,7 +14,7 @@
         <form action="{{route('admin.page.post.create')}}" method="POST" id="form">
             @csrf
             <div class="form-group">
-                <label for="status">Status</label>
+                <label for="status" class="required">Status</label>
                 <select name="status" class="custom-select" id="status">
                     <option selected disabled hidden>Select A Status</option>
                     <option value="draft">draft</option>
@@ -22,12 +22,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="name">Page Name</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Name">
+                <label for="name" class="required">Page Title</label>
+                <input type="text" class="form-control" value="{{ request()->input('title', old('title')) }}" id="title" name="title" placeholder="Enter Title">
             </div>
             <div class="form-group">
                 <label for="summernote">Description</label>
-                <textarea name="" id="summernote"></textarea>
+                <textarea name="content" id="summernote">
+                    {{ request()->input('content', old('content')) }}
+                </textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -60,6 +62,10 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <style>
         .error {
+            color: red;
+        }
+        .required:after {
+            content:" *";
             color: red;
         }
 

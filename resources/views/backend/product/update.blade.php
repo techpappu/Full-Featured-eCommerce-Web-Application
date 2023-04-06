@@ -17,20 +17,20 @@
                 <label for="name" class="required">Name</label>
                 <input type="text" class="form-control" id="name" value="{{$data['row']->name}}" name="name">
             </div>
-            <div class="d-flex">
-                <div class="form-group col-3">
+            <div class="row">
+                <div class="form-group col-md-3">
                     <label for="price" class="required" >Price</label>
                     <input type="number" class="form-control" id="price" value="{{$data['row']->price}}" name="price">
                 </div>
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label for="quantity">Quantity</label>
                     <input type="number" class="form-control" id="quantity" value="{{$data['row']->quantity}}" name="quantity">
                 </div>
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label for="sale_price">Sale Price</label>
                     <input type="number" class="form-control" id="sale_price" value="{{$data['row']->sale_price}}" name="sale_price">
                 </div>
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label for="date-input">Sale Expiry Date</label>
                     <input class="form-control" name="sale_expiry_date" type="date" value="{{$data['row']->sale_expiry_date}}" value="" id="date-input">
                 </div>
