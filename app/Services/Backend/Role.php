@@ -31,12 +31,15 @@ class Role
         
         $request->validate([
             'name' =>'required|min:3|',
-            'guard_name'=>'required|',
 
         ]);
-        $data = $request->only(['name','guard_name']);
+
+        $data = $request->only(['name']);
+
         $row = \Facades\Spatie\Permission\Models\Role::create($data);
+
         if(!empty($row->id)) return true;
+
         return false;
 
     }
@@ -46,10 +49,9 @@ class Role
         
         $request->validate([
             'name' =>'required|min:3',
-            'guard_name'=>'required',
         ]);
         
-        $data = $request->only(['name','guard_name']);
+        $data = $request->only(['name']);
 
         if (!empty($row->id)) {
             $row->update($data);

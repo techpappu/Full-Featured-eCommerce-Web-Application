@@ -19,6 +19,9 @@ Route::get('/', function () {
 })->name('home');
 
 
+Route::get('/demo', \App\Http\Controllers\DemoController::class)->name('demo');
+
+
 Route::middleware('auth')->group(function(){
     Route::get('/admin/dashboard', function () {
         return view('backend.dashboard');
@@ -44,6 +47,8 @@ Route::post('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::cla
 Route::get('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.update');
 Route::post('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.post.update');
 Route::post('/admin/role/delete/{id}', \App\Http\Controllers\Backend\Role\Delete::class)->name('admin.role.delete');
+Route::get('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class);
+Route::post('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class);
 
 # Back-end permissions - only admin role users will be accessing this module in backend to manage permissions
 Route::get('/admin/permission', \App\Http\Controllers\Backend\Permission\Index::class)->name('admin.permission');
@@ -52,8 +57,6 @@ Route::post('/admin/permission/create', \App\Http\Controllers\Backend\Permission
 Route::get('/admin/permission/update/{id}', \App\Http\Controllers\Backend\Permission\Update::class)->name('admin.permission.update');
 Route::post('/admin/permission/update/{id}', \App\Http\Controllers\Backend\Permission\Update::class)->name('admin.permission.post.update');
 Route::post('/admin/permission/delete/{id}', \App\Http\Controllers\Backend\Permission\Delete::class)->name('admin.permission.delete');
-// Route::get('/admin/permission/attach/{id}/{role_id}', \App\Http\Controllers\Backend\Permission\Attach::class);
-// Route::post('/admin/permission/attach/{id}/{role_id}', \App\Http\Controllers\Backend\Permission\Attach::class);
 
 # Back-end pages - this section will be used to manage shop default pages and create new pages
 Route::get('/admin/page', \App\Http\Controllers\Backend\Page\Index::class)->name('admin.page');

@@ -26,17 +26,29 @@ class Permission
 
     }
 
+    public function all()
+    {
+
+        $row = \Facades\Spatie\Permission\Models\Permission::all();
+
+        if (empty($row)) return redirect()->route('admin.permission')->with('warning','Data not found!');
+
+        return $row;
+
+    }
+
     public function create(Request $request)
     {
         
         $request->validate([
-            'name' =>'required|min:3|',
-            'guard_name'=>'required|',
-
+            'name' =>'required|min:3'
         ]);
-        $data = $request->only(['name','guard_name']);
+
+        $data = $request->only(['name']);
         $row = \Facades\Spatie\Permission\Models\Permission::create($data);
+        
         if(!empty($row->id)) return true;
+
         return false;
 
     }
@@ -45,11 +57,10 @@ class Permission
         $row = \Facades\Spatie\Permission\Models\Permission::find($id);
         
         $request->validate([
-            'name' =>'required|min:3',
-            'guard_name'=>'required',
+            'name' =>'required|min:3'
         ]);
         
-        $data = $request->only(['name','guard_name']);
+        $data = $request->only(['name']);
 
         if (!empty($row->id)) {
             $row->update($data);

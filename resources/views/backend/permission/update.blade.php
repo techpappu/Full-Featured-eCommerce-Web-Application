@@ -17,10 +17,6 @@
                 <label for="name" class="required">Permission Name</label>
                 <input type="text" class="form-control" id="name" value="{{$data['row']->name}}" name="name">
             </div>
-            <div class="form-group">
-                <label for="guard_name" class="required">Guard Name</label>
-                <input type="text" class="form-control" value="{{$data['row']->guard_name}}" id="guard_name" name="guard_name">
-            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
@@ -30,12 +26,10 @@
     <script>
         $("#form").validate({
             rules: {
-                name: 'required',
-                guard_name:'required'
+                name: 'required'
             },
             messages: {
-                name: 'Please enter a name',
-                guard_name:'Please enter a guard name'
+                name: 'Please enter a name'
 
             }
         });
