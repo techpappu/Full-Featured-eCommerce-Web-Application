@@ -11,7 +11,7 @@
 
         <x-back-end.validationAlert></x-back-end.validationAlert>
 
-        <form action="{{route('admin.product.post.create')}}" method="POST" id="form">
+        <form action="{{route('admin.product.post.create')}}" method="POST" id="form" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name" class="required">Name</label>
@@ -41,12 +41,18 @@
                     {{ request()->input('description', old('description')) }}
                 </textarea>
             </div>
-            <div class="form-group col-3">
-                <label for="status" class="required">Status</label>
-                <select name="status" class="custom-select" id="status">
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="status" class="required">Status</label>
+                    <select name="status" class="custom-select" id="status">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="logo">Product Thumbnail</label>
+                    <input type="file" class="dropify" name="file" data-height="100" data-default-file="">
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -55,6 +61,8 @@
     @section('script')
     <script src="{{asset('assets/libs/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="{{ asset('assets/libs/dropify/dropify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-fileuploads.init.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#description').summernote({
@@ -79,6 +87,7 @@
     @endsection
     @section("css")
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/libs/dropify/dropify.min.css') }}">
     <style>
         .error {
             color: red;

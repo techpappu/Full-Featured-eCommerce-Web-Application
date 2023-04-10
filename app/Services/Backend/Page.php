@@ -36,6 +36,10 @@ class Page
         ]);
         $data = $request->only(['title','status','content']);
         $row = \Facades\App\Models\Page::create($data);
+        if($request->file){
+            $row->addMedia($request->file)->toMediaCollection('page');
+        }
+        
         if(!empty($row->id)) return true;
         return false;
 
@@ -48,6 +52,14 @@ class Page
             'title' =>'required|min:4',
         ]);
         $data = $request->only(['title','status','content']);
+        $file=$row->getFirstMedia('page');
+
+        if(!empty($request->file)){
+            if(!empty($file->id)){
+                $row->getFirstMedia('page')->delete();
+            }
+            $row->addMedia($request->file)->toMediaCollection('page');
+        }
         
         
 

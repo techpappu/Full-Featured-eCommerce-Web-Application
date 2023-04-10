@@ -11,9 +11,16 @@ class Setting
     {
         $row = \Facades\App\Models\Setting::find($request->id);
        
-        $data = $request->only(['title','logo','description','keywords','email','phone','address','city','postcode','status','facebook','twitter','youtube']);
-        
-        
+        $data = $request->only(['title','description','keywords','email','phone','address','city','postcode','status','facebook','twitter','youtube']);
+    
+        $file=$row->getFirstMedia('settings');
+
+        if(!empty($request->file)){
+            if(!empty($file->id)){
+                $row->getFirstMedia('settings')->delete();
+            }
+            $row->addMedia($request->file)->toMediaCollection('settings');
+        }
 
         if (!empty($row->id)) {
             $row->update($data);

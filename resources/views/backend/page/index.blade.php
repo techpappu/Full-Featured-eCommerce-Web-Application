@@ -15,6 +15,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Page Thumbnail</th>
                     <th>Status</th>
                     <th>Created At</th>
                     <th>Updated At</th>
@@ -26,6 +27,11 @@
                     <tr>
                         <td>{{$row->id}}</td>
                         <td><a href="{{route('admin.page.update',$row->id)}}">{{$row->title}}</a></td>
+                        <td>
+                            @if ($row->hasMedia('page'))
+                                <img src="{{$row->getFirstMediaUrl('page','preview')}}" height="100" width="200" alt="">
+                            @endif
+                        </td>
                         <td>{{$row->status}}</td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
                         <td>{{$row->updated_at->diffForHumans()}}</td>

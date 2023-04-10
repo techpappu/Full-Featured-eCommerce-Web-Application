@@ -13,7 +13,7 @@
         <x-back-end.validationAlert></x-back-end.validationAlert>
         
 
-        <form action="{{route('admin.page.post.update',$data['row']->id)}}" method="POST" id="form">
+        <form action="{{route('admin.page.post.update',$data['row']->id)}}" method="POST" id="form" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="status" class="required">Status</label>
@@ -31,6 +31,12 @@
                 <label for="summernote">Description</label>
                 <textarea name="content" id="summernote">{{$data['row']->content}}</textarea>
             </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="logo">Page Thumbnail</label>
+                    <input type="file" class="dropify" name="file" data-height="100" data-default-file="{{$data['row']->getFirstMediaUrl('page','preview')}}">
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">update</button>
         </form>
     </div>
@@ -38,6 +44,8 @@
     @section('script')
     <script src="{{asset('assets/libs/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="{{ asset('assets/libs/dropify/dropify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-fileuploads.init.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#summernote').summernote({
@@ -47,11 +55,11 @@
         $("#form").validate({
             rules: {
                 status: 'required',
-                name: 'required',
+                title: 'required',
             },
             messages: {
                 status: 'required',
-                name: "Please enter a name",
+                title: "Please enter a Page Title",
                 
             }
         });
@@ -60,6 +68,7 @@
     @endsection
     @section("css")
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/libs/dropify/dropify.min.css') }}">
     <style>
         .error {
             color: red;

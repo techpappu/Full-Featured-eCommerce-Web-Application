@@ -22,11 +22,15 @@ Route::get('/', function () {
 Route::get('/demo', \App\Http\Controllers\DemoController::class)->name('demo');
 
 
-Route::middleware('auth')->group(function(){
-    Route::get('/admin/dashboard', function () {
-        return view('backend.dashboard');
-    })->name('adminDashboard');
-});
+// Route::middleware('auth')->group(function(){
+//     Route::get('/admin/dashboard', function () {
+//         return view('backend.dashboard');
+//     })->name('adminDashboard');
+// });
+Route::get('/admin/dashboard', function () {
+    return view('backend.dashboard');
+})->name('adminDashboard');
+
 
 # Back-end login - this is an alternative login for backend - user expected to register and login from front-end
 Route::get('/admin/login', \App\Http\Controllers\Backend\Index::class)->name('login');
@@ -47,8 +51,8 @@ Route::post('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::cla
 Route::get('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.update');
 Route::post('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.post.update');
 Route::post('/admin/role/delete/{id}', \App\Http\Controllers\Backend\Role\Delete::class)->name('admin.role.delete');
-Route::get('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class);
-Route::post('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class);
+Route::get('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class)->name('admin.role.permissions');
+Route::post('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class)->name('admin.role.permissions.post');
 
 # Back-end permissions - only admin role users will be accessing this module in backend to manage permissions
 Route::get('/admin/permission', \App\Http\Controllers\Backend\Permission\Index::class)->name('admin.permission');

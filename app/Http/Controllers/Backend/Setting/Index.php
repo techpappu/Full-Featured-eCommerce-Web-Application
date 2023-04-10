@@ -22,6 +22,7 @@ class Index extends Controller
 
         $data=[];
         $data['row']=\Facades\App\Models\Setting::first();
+        $data['file']=$data['row']->getFirstMediaUrl('settings','preview');
 
         return view('backend.setting.index',compact('data'));
     }
