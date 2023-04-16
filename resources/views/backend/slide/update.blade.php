@@ -1,10 +1,10 @@
 <x-back-end.master>
     @section('page-title')
-    Update Page
+    Update Slide
     @endsection
     @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-    <li class="breadcrumb-item"><a href="javascript: void(0);">Update Page</a></li>
+    <li class="breadcrumb-item"><a href="javascript: void(0);">Slides</a></li>
+    <li class="breadcrumb-item"><a href="javascript: void(0);">Update Slide</a></li>
     @endsection
     @section('content')
     <div class="card-box">
@@ -13,28 +13,23 @@
         <x-back-end.validationAlert></x-back-end.validationAlert>
         
 
-        <form action="{{route('admin.page.post.update',$data['row']->id)}}" method="POST" id="form" enctype="multipart/form-data">
+        <form action="{{route('admin.slide.update',$data['row']->id)}}" method="POST" id="form" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="status" class="required">Status</label>
                 <select name="status" class="custom-select" id="status">
-                    <option selected disabled hidden>Select A Status</option>
-                    <option value="draft"  {{ $data['row']->status=='draft' ? 'selected' : '' }}>draft</option>
-                    <option value="published" {{ $data['row']->status=='published' ? 'selected' : '' }}>published</option>
+                    <option value="active" {{ $data['row']->status=='active' ? 'selected' : '' }}>Active</option>
+                    <option value="inactive" {{ $data['row']->status=='inactive' ? 'selected' : '' }}>Inactive</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="name" class="required">Page Title</label>
                 <input type="text" class="form-control" id="title" value="{{$data['row']->title}}" name="title" placeholder="Enter Title">
             </div>
-            <div class="form-group">
-                <label for="summernote">Description</label>
-                <textarea name="content" id="summernote">{{$data['row']->content}}</textarea>
-            </div>
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="logo">Page Thumbnail</label>
-                    <input type="file" class="dropify" name="file" data-height="100" data-default-file="{{$data['row']->getFirstMediaUrl('page','preview')}}">
+                <div class="form-group col-md-12">
+                    <label for="logo">Slide Image</label>
+                    <input type="file" class="dropify" name="file" data-height="300" data-default-file="{{$data['row']->getFirstMediaUrl('slide','preview')}}">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">update</button>
@@ -43,7 +38,6 @@
     @endsection
     @section('script')
     <script src="{{asset('assets/libs/jquery-validation/jquery.validate.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="{{ asset('assets/libs/dropify/dropify.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-fileuploads.init.js') }}"></script>
     <script>
@@ -67,7 +61,6 @@
     </script>
     @endsection
     @section("css")
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/libs/dropify/dropify.min.css') }}">
     <style>
         .error {

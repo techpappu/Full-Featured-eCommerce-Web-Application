@@ -9,7 +9,7 @@
     <div class="card-box overflow-hidden">
         <x-back-end.message></x-back-end.message>
 
-        <form action="{{ route('admin.setting.post.update') }}" method="POST" id="form">
+        <form action="{{ route('admin.setting.post.update') }}" method="POST" id="form"  enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $data['row']->id }}">
             <div class="form-group">
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="logo">Site Logo</label>
-                    <input type="file" class="dropify" data-height="100" data-default-file="{{asset('assets/images/small/img-1.jpg')}}">
+                    <input type="file" class="dropify" name="file" data-height="100" data-default-file="{{$data['file']}}">
                 </div>
                 <div class="form-group col-md-8">
                     <label for="keywords"  >Keywords</label>

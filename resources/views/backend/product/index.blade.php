@@ -15,10 +15,10 @@
                 <tr>
                     <th>ID</th>
                     <th>name</th>
+                    <th>Product Thumbnail</th>
                     <th>price</th>
                     <th>Quantity</th>
                     <th>Sale Price</th>
-                    <th>Sale Expiry Date</th>
                     <th>Status</th>
                     <th>Created At</th>
                     <th>Updated At</th>
@@ -30,10 +30,14 @@
                     <tr>
                         <td>{{$row->id}}</td>
                         <td><a href="{{route('admin.product.update',$row->id)}}">{{$row->name}}</a></td>
+                        <td>
+                            @if ($row->hasMedia('product'))
+                                <img src="{{$row->getFirstMediaUrl('product','preview')}}" height="50" width="100" alt="">
+                            @endif
+                        </td>
                         <td>{{$row->price}}</td>
                         <td>{{$row->quantity}}</td>
                         <td>{{$row->sale_price}}</td>
-                        <td>{{$row->sale_expiry_date}}</td>
                         <td>{{$row->status}}</td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
                         <td>{{$row->updated_at->diffForHumans()}}</td>

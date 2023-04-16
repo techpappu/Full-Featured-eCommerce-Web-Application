@@ -38,6 +38,11 @@ class Product
         ]);
         $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status']);
         $row = \Facades\App\Models\Product::create($data);
+
+        if($request->file){
+            $row->addMedia($request->file)->toMediaCollection('product');
+        }
+
         if(!empty($row->id)) return true;
         return false;
 
@@ -52,7 +57,15 @@ class Product
             
         ]);
         $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status']);
+        $file=$row->getFirstMedia('product');
+
         
+        if(!empty($request->file)){
+            if(!empty($file->id)){
+                $row->getFirstMedia('product')->delete();
+            }
+            $row->addMedia($request->file)->toMediaCollection('product');
+        }
         
 
         if (!empty($row->id)) {

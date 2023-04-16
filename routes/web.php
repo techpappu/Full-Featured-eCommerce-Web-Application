@@ -22,11 +22,15 @@ Route::get('/', function () {
 Route::get('/demo', \App\Http\Controllers\DemoController::class)->name('demo');
 
 
-Route::middleware('auth')->group(function(){
-    Route::get('/admin/dashboard', function () {
-        return view('backend.dashboard');
-    })->name('adminDashboard');
-});
+// Route::middleware('auth')->group(function(){
+//     Route::get('/admin/dashboard', function () {
+//         return view('backend.dashboard');
+//     })->name('adminDashboard');
+// });
+Route::get('/admin/dashboard', function () {
+    return view('backend.dashboard');
+})->name('adminDashboard');
+
 
 # Back-end login - this is an alternative login for backend - user expected to register and login from front-end
 Route::get('/admin/login', \App\Http\Controllers\Backend\Index::class)->name('login');
@@ -47,8 +51,8 @@ Route::post('/admin/role/create', \App\Http\Controllers\Backend\Role\Create::cla
 Route::get('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.update');
 Route::post('/admin/role/update/{id}', \App\Http\Controllers\Backend\Role\Update::class)->name('admin.role.post.update');
 Route::post('/admin/role/delete/{id}', \App\Http\Controllers\Backend\Role\Delete::class)->name('admin.role.delete');
-Route::get('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class);
-Route::post('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class);
+Route::get('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class)->name('admin.role.permissions');
+Route::post('/admin/role/permissions/{id}', \App\Http\Controllers\Backend\Role\Permission::class)->name('admin.role.permissions.post');
 
 # Back-end permissions - only admin role users will be accessing this module in backend to manage permissions
 Route::get('/admin/permission', \App\Http\Controllers\Backend\Permission\Index::class)->name('admin.permission');
@@ -64,16 +68,24 @@ Route::get('/admin/page/create', \App\Http\Controllers\Backend\Page\Create::clas
 Route::post('/admin/page/create', \App\Http\Controllers\Backend\Page\Create::class)->name('admin.page.post.create');
 Route::get('/admin/page/update/{id}', \App\Http\Controllers\Backend\Page\Update::class)->name('admin.page.update');
 Route::post('/admin/page/update/{id}', \App\Http\Controllers\Backend\Page\Update::class)->name('admin.page.post.update');
-Route::post('/admin/page/delete/{id}', \App\Http\Controllers\Backend\Page\Delete::class)->name('admin.page.delete');;
+Route::post('/admin/page/delete/{id}', \App\Http\Controllers\Backend\Page\Delete::class)->name('admin.page.delete');
+
+# Back-end Slides - this section will be used to manage shop default slide and create new slide
+Route::get('/admin/slide', \App\Http\Controllers\Backend\Slide\Index::class)->name('admin.slide');
+Route::get('/admin/slide/create', \App\Http\Controllers\Backend\Slide\Create::class)->name('admin.slide.create');
+Route::post('/admin/slide/create', \App\Http\Controllers\Backend\Slide\Create::class)->name('admin.slide.post.create');
+Route::get('/admin/slide/update/{id}', \App\Http\Controllers\Backend\Slide\Update::class)->name('admin.slide.update');
+Route::post('/admin/slide/update/{id}', \App\Http\Controllers\Backend\Slide\Update::class)->name('admin.slide.post.update');
+Route::post('/admin/slide/delete/{id}', \App\Http\Controllers\Backend\Slide\Delete::class)->name('admin.slide.delete');
 
 
 # Back-end taxes - this section will be used to manage shop default taxes and create new taxes
 Route::get('/admin/tax', \App\Http\Controllers\Backend\Tax\Index::class)->name('admin.tax');
 Route::get('/admin/tax/create', \App\Http\Controllers\Backend\Tax\Create::class)->name('admin.tax.create');
 Route::post('/admin/tax/create', \App\Http\Controllers\Backend\Tax\Create::class)->name('admin.tax.post.create');
-Route::get('/admin/tax/update/{id}', \App\Http\Controllers\Backend\Tax\Update::class)->name('admin.tax.update');;
-Route::post('/admin/tax/update/{id}', \App\Http\Controllers\Backend\Tax\Update::class)->name('admin.tax.post.update');;
-Route::post('/admin/tax/delete/{id}', \App\Http\Controllers\Backend\Tax\Delete::class)->name('admin.tax.delete');;
+Route::get('/admin/tax/update/{id}', \App\Http\Controllers\Backend\Tax\Update::class)->name('admin.tax.update');
+Route::post('/admin/tax/update/{id}', \App\Http\Controllers\Backend\Tax\Update::class)->name('admin.tax.post.update');
+Route::post('/admin/tax/delete/{id}', \App\Http\Controllers\Backend\Tax\Delete::class)->name('admin.tax.delete');
 
 # Back-end shipping - this section will be used to manage shop default shipping methods and create new shipping methods
 Route::get('/admin/shipping', \App\Http\Controllers\Backend\Shipping\Index::class)->name('admin.shipping');
@@ -103,8 +115,8 @@ Route::post('/admin/category/delete/{id}', \App\Http\Controllers\Backend\Categor
 Route::get('/admin/product', \App\Http\Controllers\Backend\Product\Index::class)->name('admin.product');
 Route::get('/admin/product/create', \App\Http\Controllers\Backend\Product\Create::class)->name('admin.product.create');
 Route::post('/admin/product/create', \App\Http\Controllers\Backend\Product\Create::class)->name('admin.product.post.create');
-Route::get('/admin/product/update/{id}', \App\Http\Controllers\Backend\Product\Update::class)->name('admin.product.update');;
-Route::post('/admin/product/update/{id}', \App\Http\Controllers\Backend\Product\Update::class)->name('admin.product.post.update');;
+Route::get('/admin/product/update/{id}', \App\Http\Controllers\Backend\Product\Update::class)->name('admin.product.update');
+Route::post('/admin/product/update/{id}', \App\Http\Controllers\Backend\Product\Update::class)->name('admin.product.post.update');
 Route::post('/admin/product/delete/{id}', \App\Http\Controllers\Backend\Product\Delete::class)->name('admin.product.delete');
 /*
 # Back-end orders - this section will be used to review orders and process them 

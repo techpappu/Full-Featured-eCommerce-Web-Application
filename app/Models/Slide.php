@@ -8,7 +8,8 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-class Page extends Model implements HasMedia
+
+class Slide extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;

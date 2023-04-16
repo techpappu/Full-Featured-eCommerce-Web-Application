@@ -18,10 +18,10 @@ class Permission extends Controller
         $data['allowedpermissions'] = $data['role']->permissions()->pluck('id')->toArray();
 
         if($request->isMethod('POST')){
-            if(\Facades\App\Services\Backend\Role::permission($id, $request)){
-                return redirect()->route('admin.role')->with('success','Role permissions has been successfully added');
+            if(\Facades\App\Services\Backend\Role::permission($request,$id)){
+                return redirect()->route('admin.role.permissions',$id)->with('success','Role permissions has been successfully added');
             }   else{
-                return redirect()->route('admin.role')->with('danger','Role permissions can not be created!');
+                return redirect()->route('admin.role.permissions',$id)->with('danger','Role permissions can not be created!');
             }
         }
 

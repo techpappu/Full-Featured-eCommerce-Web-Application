@@ -28,6 +28,18 @@
                         <li><a href="{{ route('admin.page.create') }}">Create New Page</a></li>
                     </ul>
                 </li>
+                <!--- Page sidebar -->
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fas fa-image"></i>
+                        <span> Slides </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('admin.slide') }}">All Slides</a></li>
+                        <li><a href="{{ route('admin.slide.create') }}">Create New Slide</a></li>
+                    </ul>
+                </li>
                 <!--- Tax sidebar -->
                 <li>
                     <a href="javascript: void(0);">

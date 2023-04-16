@@ -16,7 +16,7 @@ class Create extends Controller
             if (\Facades\App\Services\Backend\Page::create($request)) {
                 return redirect()->route('admin.page')->with('success','Page has been successfully added');
             } else{
-                return redirect()->route('admin.page')->with('danger','page can not be created!');
+                return redirect()->route('admin.page')->with('danger','Page can not be created!');
             }
         }
 

@@ -1,10 +1,10 @@
 <x-back-end.master>
     @section('page-title')
-        Pages <a href="{{route('admin.page.create')}}" class="btn btn-outline-primary waves-effect waves-light">Add New</a>
+        Slides <a href="{{route('admin.slide.create')}}" class="btn btn-outline-primary waves-effect waves-light">Add New</a>
     @endsection
     @section('breadcrumb')
-        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-        <li class="breadcrumb-item"><a href="javascript: void(0);">All Pages</a></li>
+        <li class="breadcrumb-item"><a href="javascript: void(0);">Slides</a></li>
+        <li class="breadcrumb-item"><a href="javascript: void(0);">All Slides</a></li>
     @endsection
     @section('content')
     <div class="card-box pb-0 overflow-hidden">
@@ -15,7 +15,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
-                    <th>Page Thumbnail</th>
+                    <th>Slide Thumbnail</th>
                     <th>Status</th>
                     <th>Created At</th>
                     <th>Updated At</th>
@@ -26,10 +26,10 @@
                 @foreach ($data['rows'] as $row)
                     <tr>
                         <td>{{$row->id}}</td>
-                        <td><a href="{{route('admin.page.update',$row->id)}}">{{$row->title}}</a></td>
+                        <td><a href="{{route('admin.slide.update',$row->id)}}">{{$row->title}}</a></td>
                         <td>
-                            @if ($row->hasMedia('page'))
-                                <img src="{{$row->getFirstMediaUrl('page','preview')}}" height="100" width="200" alt="">
+                            @if ($row->hasMedia('slide'))
+                                <img src="{{$row->getFirstMediaUrl('slide','preview')}}" height="100" width="200" alt="">
                             @endif
                         </td>
                         <td>{{$row->status}}</td>
@@ -37,11 +37,11 @@
                         <td>{{$row->updated_at->diffForHumans()}}</td>
                         <td>
                             <div class="d-inline">
-                                <a href="{{route('admin.page.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
+                                <a href="{{route('admin.slide.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
                                         <i class="far fa-edit"></i>
                                 </a>
                                
-                                <x-back-end.button.delete :row="$row" :action="route('admin.page.delete',$row->id)"></x-back-end.button.delete>
+                                <x-back-end.button.delete :row="$row" :action="route('admin.slide.delete',$row->id)"></x-back-end.button.delete>
                                 
                             </div>
                         </td>

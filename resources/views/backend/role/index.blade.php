@@ -31,6 +31,9 @@
                         <td>{{$row->updated_at->diffForHumans()}}</td>
                         <td>
                             <div class="d-inline">
+                                <a href="{{route('admin.role.permissions',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-success ">
+                                    Permissions
+                            </a>
                                 <a href="{{route('admin.role.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
                                         <i class="far fa-edit"></i>
                                 </a>

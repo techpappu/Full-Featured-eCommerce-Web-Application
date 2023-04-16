@@ -4,12 +4,12 @@ namespace App\Services\Backend;
 
 use Illuminate\Http\Request;
 
-class Page
+class Slide
 {
     public function rows(Int $per_page)
     {
 
-        $rows = \Facades\App\Models\Page::paginate($per_page);
+        $rows = \Facades\App\Models\Slide::paginate($per_page);
 
         return $rows;
 
@@ -18,9 +18,9 @@ class Page
     public function get(Int $id)
     {
 
-        $row = \Facades\App\Models\Page::find($id);
+        $row = \Facades\App\Models\Slide::find($id);
 
-        if (empty($row->id)) return redirect()->route('admin.page')->with('warning','Data not found!');
+        if (empty($row->id)) return redirect()->route('admin.slide')->with('warning','Data not found!');
 
         return $row;
 
@@ -34,10 +34,10 @@ class Page
             'status' =>'required',
             'title' =>'required|min:4',
         ]);
-        $data = $request->only(['title','status','content']);
-        $row = \Facades\App\Models\Page::create($data);
+        $data = $request->only(['title','status']);
+        $row = \Facades\App\Models\Slide::create($data);
         if($request->file){
-            $row->addMedia($request->file)->toMediaCollection('page');
+            $row->addMedia($request->file)->toMediaCollection('slide');
         }
         
         if(!empty($row->id)) return true;
@@ -46,19 +46,19 @@ class Page
     }
     public function update(Int $id,Request $request)
     {
-        $row = \Facades\App\Models\Page::find($id);
+        $row = \Facades\App\Models\Slide::find($id);
         $request->validate([
             'status' =>'required',
             'title' =>'required|min:4',
         ]);
-        $data = $request->only(['title','status','content']);
-        $file=$row->getFirstMedia('page');
+        $data = $request->only(['title','status']);
+        $file=$row->getFirstMedia('slide');
 
         if(!empty($request->file)){
             if(!empty($file->id)){
-                $row->getFirstMedia('page')->delete();
+                $row->getFirstMedia('slide')->delete();
             }
-            $row->addMedia($request->file)->toMediaCollection('page');
+            $row->addMedia($request->file)->toMediaCollection('slide');
         }
         
         
@@ -74,7 +74,7 @@ class Page
     
     public function delete($request)
     {
-        $data=\Facades\App\Models\Page::find($request->id);
+        $data=\Facades\App\Models\Slide::find($request->id);
         
         if(!empty($data->id)){
             $data->delete();

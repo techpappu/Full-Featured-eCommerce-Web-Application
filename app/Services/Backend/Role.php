@@ -71,4 +71,15 @@ class Role
         }
         return false;
     }
+
+    public function permission($request,$id)
+    {
+        $role=\Facades\Spatie\Permission\Models\Role::find($id);
+        $data=$role->syncPermissions($request->permissions);
+        
+        if(!empty($data->id)){
+            return true;
+        }
+        return false;
+    }
 }
