@@ -82,24 +82,6 @@
 <!-- Header
 ================================================== -->
 <x-front-end.header.master></x-front-end.header.master>
-
-
-<!-- Titlebar
-================================================== -->
-<section class="titlebar">
-<div class="container">
-	<div class="sixteen columns">
-        
-		<h2>@yield('page-title')</h2>
-		
-		<nav id="breadcrumbs">
-			@yield('breadcrumbs') <!-- ul>li formet -->
-		</nav>
-	</div>
-</div>
-</section>
-
-
 <!-- Content
 ================================================== -->
 

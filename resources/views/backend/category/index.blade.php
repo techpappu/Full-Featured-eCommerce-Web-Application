@@ -15,6 +15,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Actions</th>
@@ -25,6 +26,11 @@
                     <tr>
                         <td>{{$row->id}}</td>
                         <td><a href="{{route('admin.category.update',$row->id)}}">{{$row->name}}</a></td>
+                        <td>
+                            @if ($row->hasMedia('category'))
+                            <img src="{{$row->getFirstMediaUrl('category','preview')}}" height="50" width="50" alt="">
+                        @endif
+                        </td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
                         <td>{{$row->updated_at->diffForHumans()}}</td>
                         <td>

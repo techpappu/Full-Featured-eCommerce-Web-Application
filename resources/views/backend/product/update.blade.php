@@ -35,9 +35,27 @@
                     <input class="form-control" name="sale_expiry_date" type="date" value="{{$data['row']->sale_expiry_date}}" value="" id="date-input">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" >{{$data['row']->description}}</textarea>
+            <div class="row">
+                <div class="form-group col-md-10">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description">
+                        {{$data['row']->description}}
+                    </textarea>
+                </div>
+                <div class="form-group col-md-2 pl-0">
+                    <h6>Categories</h6>
+                    
+                    <div class="overflow-scroll">
+                        @foreach ($data['categories'] as $row )
+                        <div class="form-check">
+                            <input @if(in_array($row->id,$data['inCategories'])) checked="checked" @endif class="form-check-input position-static" type="checkbox" name="categories[]" id="blankCheckbox" value="{{$row->id}}">
+                            <label for="blankCheckbox">{{$row->name}}</label>
+                        </div>
+                        @endforeach
+                        
+                    </div>
+
+                </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
@@ -93,6 +111,17 @@
         .required:after {
             content:" *";
             color: red;
+        }
+        .overflow-scroll{
+            overflow-x: scroll;
+            width: 100%;
+            height: 345px;
+            border: 1px solid #CCCCCC;
+            border-radius: 2px;
+            padding: 5px;
+        }
+        .overflow-scroll label{
+            display:inline-flex !important;
         }
 
     </style>

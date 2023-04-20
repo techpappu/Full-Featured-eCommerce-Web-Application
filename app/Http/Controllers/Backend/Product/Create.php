@@ -19,7 +19,9 @@ class Create extends Controller
                 return redirect()->route('admin.product')->with('danger','Product can not be created!');
             }
         }
+        $data=[];
+        $data['categories']=\Facades\App\Models\Category::all();
 
-        return view('backend.product.create');
+        return view('backend.product.create',compact('data'));
     }
 }

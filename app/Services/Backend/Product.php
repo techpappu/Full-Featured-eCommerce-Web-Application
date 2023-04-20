@@ -38,6 +38,7 @@ class Product
         ]);
         $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status']);
         $row = \Facades\App\Models\Product::create($data);
+        $row->categories()->sync($request->categories);
 
         if($request->file){
             $row->addMedia($request->file)->toMediaCollection('product');
@@ -58,6 +59,7 @@ class Product
         ]);
         $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status']);
         $file=$row->getFirstMedia('product');
+        $row->categories()->sync($request->categories);
 
         
         if(!empty($request->file)){
@@ -80,7 +82,7 @@ class Product
     public function delete($request)
     {
         $data=\Facades\App\Models\Product::find($request->id);
-        
+        $data->categories()->detach();
         if(!empty($data->id)){
             $data->delete();
             return true;

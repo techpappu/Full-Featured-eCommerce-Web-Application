@@ -21,6 +21,8 @@ class Update extends Controller
         }
         $data=[];
         $data['row']=\Facades\App\Services\Backend\Product::get($id);
+        $data['categories']=\Facades\App\Models\Category::all();
+        $data['inCategories'] = $data['row']->categories()->pluck('id')->toArray();
         return view('backend.product.update',compact('data'));
     }
 }
