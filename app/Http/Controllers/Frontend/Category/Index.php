@@ -14,6 +14,8 @@ class Index extends Controller
     {   
         $data=[];
         $data['rows']=\Facades\App\Models\Category::all();
+        $data['products']=\Facades\App\Models\Product::latest()->paginate(20);
+        $data['columns']='four';
         return view('frontend.default.shop.category.index',compact('data'));
     }
 }

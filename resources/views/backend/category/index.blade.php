@@ -16,6 +16,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
+                    <th>Is Featured?</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Actions</th>
@@ -31,6 +32,7 @@
                             <img src="{{$row->getFirstMediaUrl('category','preview')}}" height="50" width="50" alt="">
                         @endif
                         </td>
+                        <td>{{$row->featured ? 'yes' : 'no'}}</td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
                         <td>{{$row->updated_at->diffForHumans()}}</td>
                         <td>

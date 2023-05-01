@@ -13,8 +13,9 @@ class Product extends Controller
     public function __invoke(Int $id,Request $request)
     {
         $data=[];
-        $data['category']=\Facades\App\Models\Category::find($id);
-        $data['rows']=$data['category']->products()->paginate(2);
+        $data['cat']=\Facades\App\Models\Category::find($id);
+        $data['category']=\Facades\App\Models\Category::all();
+        $data['products']=$data['cat']->products()->paginate(2);
         $data['columns']='four';
         return view('frontend.default.shop.category.products',compact('data'));
     }

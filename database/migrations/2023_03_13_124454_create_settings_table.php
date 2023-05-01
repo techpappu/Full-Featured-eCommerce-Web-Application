@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('facebook', 50)->nullable();
             $table->string('twitter', 50)->nullable();
             $table->string('youtube', 50)->nullable();
+            $table->string('currency_prefix', 10)->nullable()->default('$');
             $table->timestamps();
             $table->softDeletes();
         });

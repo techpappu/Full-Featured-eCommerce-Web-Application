@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="price" class="required" >Price</label>
-                    <input type="number" class="form-control" id="price" value="{{$data['row']->price}}" name="price">
+                    <input type="number" class="form-control" id="price" value="{{$data['row']->getRawOriginal('price')}}" name="price">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="quantity">Quantity</label>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="sale_price">Sale Price</label>
-                    <input type="number" class="form-control" id="sale_price" value="{{$data['row']->sale_price}}" name="sale_price">
+                    <input type="number" class="form-control" id="sale_price" value="{{$data['row']->getRawOriginal('sale_price')}}" name="sale_price">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="date-input">Sale Expiry Date</label>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="logo">Product Thumbnail</label>
-                    <input type="file" class="dropify" name="file" data-height="100" data-default-file="{{$data['row']->getFirstMediaUrl('product','preview')}}">
+                    <input type="file" class="dropify" name="file[]" data-height="100" multiple data-default-file="{{$data['row']->getFirstMediaUrl('product','preview')}}">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>

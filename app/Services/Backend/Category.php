@@ -34,7 +34,7 @@ class Category
             'name' =>'required|min:4',
             
         ]);
-        $data = $request->only(['name','description']);
+        $data = $request->only(['name','featured','description']);
         $row = \Facades\App\Models\Category::create($data);
         if($request->file){
             $row->addMedia($request->file)->toMediaCollection('category');
@@ -49,7 +49,8 @@ class Category
         $request->validate([
             'name' =>'required|min:4',
         ]);
-        $data = $request->only(['name','description']);
+        
+        $data = $request->only(['name','featured','description']);
 
         $file=$row->getFirstMedia('category');
 

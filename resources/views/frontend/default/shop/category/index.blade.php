@@ -9,25 +9,55 @@
     </ul>
     @endsection
     @section('content')
-    <div class="container product-categories">
+        <div class="container">
 
-        <!-- Category #1 -->
-        @foreach ($data['rows'] as $row)
-        <div class="four columns">
-            <a href="{{route('category.single',['id'=>$row->id,'slug'=>$row->getSlug($row->name)])}}" class="img-caption">
-                <figure>
-                    @if ($row->hasMedia('category'))
-                    <img src="{{$row->getFirstMediaUrl('category','preview')}}"  alt="">
-                    @endif
-                    <figcaption>
-                        <h3>{{$row->name}}</h3>
-                        <span>Browse Products</span>
-                    </figcaption>
-                </figure>
-            </a>
+            <!-- Sidebar
+            ================================================== -->
+                <div class="four columns">
+            
+                    <!-- Categories -->
+                    <div class="widget margin-top-0">
+                        <h3 class="headline">Categories</h3><span class="line"></span><div class="clearfix"></div>
+            
+                        <ul id="categories">
+                            @foreach ($data['rows'] as $row)
+                                <li><a href="{{route('category.single',['id'=>$row->id,'slug'=>$row->getSlug($row->name)])}}">{{$row->name}} <span>({{$row->products()->count()}})</span></a></li>
+                            @endforeach
+                        </ul>
+                        <div class="clearfix"></div>
+            
+                    </div>
+            
+            
+                    <!-- Widget -->
+                    <div class="widget">
+                        <h3 class="headline">Filter By Price</h3><span class="line"></span><div class="clearfix"></div>
+            
+                        <div id="price-range">
+                            <div class="padding-range"><div id="slider-range"></div></div>
+                            <label for="amount">Price:</label>
+                            <input type="text" id="amount"/>
+                            <a href="#" class="button color">Filter</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+            
+                </div>
+            
+            
+                <!-- Content
+                ================================================== -->
+                <div class="twelve columns">
+            
+                    <!-- Ordering -->
+                    <select class="orderby">
+                        <option>Default Sorting</option>
+                        <option>Sort by Popularity</option>
+                        <option>Sort by Newness</option>
+                    </select>
+                    <!-- Products -->
+                    <x-front-end.product.grid :rows="$data['products']" :pagination=true :columns="$data['columns']" ></x-front-end.product.grid>
+                </div>
         </div>
-        @endforeach
-
-    </div>
     @endsection
 </x-front-end.master>

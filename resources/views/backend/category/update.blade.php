@@ -14,9 +14,18 @@
         <form action="{{route('admin.category.post.update',$data['row']->id)}}" method="POST" id="form" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="name" class="required">Category Name</label>
-                    <input type="text" class="form-control" id="name" value="{{$data['row']->name}}" name="name">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name" class="required">Category Name</label>
+                        <input type="text" class="form-control" id="name" value="{{$data['row']->name}}" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="featured" class="required">Is Featured?</label>
+                        <select name="featured" class="custom-select" id="featured">
+                            <option value="0" {{ $data['row']->featured ? 'selected' : 'selected' }}>No</option>
+                            <option value="1" {{ $data['row']->featured ? 'selected' : '' }}>Yes</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="file" class="required">Category Image</label>

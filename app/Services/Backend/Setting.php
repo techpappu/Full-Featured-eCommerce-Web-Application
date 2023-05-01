@@ -11,7 +11,7 @@ class Setting
     {
         $row = \Facades\App\Models\Setting::find($request->id);
        
-        $data = $request->only(['title','description','keywords','email','phone','address','city','postcode','status','facebook','twitter','youtube']);
+        $data = $request->only(['title','currency_prefix','description','keywords','email','phone','address','city','postcode','status','facebook','twitter','youtube']);
     
         $file=$row->getFirstMedia('settings');
 

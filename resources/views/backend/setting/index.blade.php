@@ -12,10 +12,17 @@
         <form action="{{ route('admin.setting.post.update') }}" method="POST" id="form"  enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $data['row']->id }}">
-            <div class="form-group">
-                <label for="name">Title</label>
-                <input type="text" class="form-control" id="name"
-                    value="{{ $data['row']->title }}" name="title">
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label for="name">Title</label>
+                    <input type="text" class="form-control" id="name"
+                        value="{{ $data['row']->title }}" name="title">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="currency_prefix">Currency Symbol</label>
+                    <input type="text" class="form-control" id="currency_prefix"
+                        value="{{ $data['row']->currency_prefix }}" name="currency_prefix">
+                </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-4">

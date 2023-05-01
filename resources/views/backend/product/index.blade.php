@@ -46,6 +46,7 @@
                                 <a href="{{route('admin.product.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
                                         <i class="far fa-edit"></i>
                                 </a>
+                                <a href="{{route('admin.product.images',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-success"><i class="far fa-image"></i> Images</a>
                                
                                 <x-back-end.button.delete :row="$row" :action="route('admin.product.delete',$row->id)"></x-back-end.button.delete>
                                 

@@ -29,12 +29,6 @@
                         src="{{$image->getUrl()}}" data-rsTmb="{{$image->getUrl()}}"
                         alt="" /></a>
                     @endforeach
-                    <a href="{{asset('/')}}images/product_item_04b-big.jpg" class="mfp-gallery" title="Second Title"><img
-                            class="rsImg" src="{{asset('/')}}images/product_item_04b.jpg"
-                            data-rsTmb="{{asset('/')}}images/product_item_thumb_04b.png" alt="" /></a>
-                    <a href="{{asset('/')}}images/product_item_04c-big.jpg" class="mfp-gallery" title="Third Title"><img class="rsImg"
-                            src="{{asset('/')}}images/product_item_04c.jpg" data-rsTmb="{{asset('/')}}images/product_item_thumb_04c.png"
-                            alt="" /></a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -51,8 +45,8 @@
                     <h2>{{$data['row']->name}}</h2>
                     @if ($data['row']->sale_price)
                     <div class="d-flex flex-row">
-                        <span class="product-price-discount">${{$data['row']->price}}</span>
-                        <span class="product-price ">${{$data['row']->sale_price}}</span>
+                        <span class="product-price-discount">{{$data['row']->price}}</span>
+                        <span class="product-price ">{{$data['row']->sale_price}}</span>
                     </div>
                     @else
                     <span class="product-price">${{$data['row']->price}}</span>

@@ -63,10 +63,9 @@ class Product
 
         
         if(!empty($request->file)){
-            if(!empty($file->id)){
-                $row->getFirstMedia('product')->delete();
-            }
-            $row->addMedia($request->file)->toMediaCollection('product');
+            foreach($request->file as $image){
+                $row->addMedia($image)->toMediaCollection('product');
+            }    
         }
         
 
@@ -83,6 +82,28 @@ class Product
     {
         $data=\Facades\App\Models\Product::find($request->id);
         $data->categories()->detach();
+        if(!empty($data->id)){
+            $data->delete();
+            return true;
+        }
+        return false;
+    }
+
+    public function storeImage($request)
+    {
+        $data=\Facades\App\Models\Product::find($request->id);
+         foreach($request->file('files') as $file){
+             $data->addMedia($file)->toMediaCollection('product');
+         }
+         
+         if(!empty($data->id)) return true;
+        return false;
+    }
+
+    public function deleteImage($request)
+    {
+        $data=\Facades\Spatie\MediaLibrary\MediaCollections\Models\Media::find($request->id);
+
         if(!empty($data->id)){
             $data->delete();
             return true;

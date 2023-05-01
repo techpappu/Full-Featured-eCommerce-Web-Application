@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 30);
             $table->string('description',100)->nullable();
+            $table->boolean('featured')->nullable()->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

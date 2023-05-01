@@ -14,7 +14,7 @@ class Landing extends Controller
     {   
         $data=[];
         $data['slider']=\Facades\App\Models\Slide::where('status','active')->get();
-        $data['category']=\Facades\App\Models\Category::all();
+        $data['category']=\Facades\App\Models\Category::where('featured', true)->get();
         $data['product']=\Facades\App\Models\Product::paginate(8);
         $data['columns']='four';
         return view('frontend.default.shop.page.landing',compact('data'));

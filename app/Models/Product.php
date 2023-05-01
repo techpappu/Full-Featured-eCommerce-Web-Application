@@ -64,4 +64,17 @@ class Product extends Model implements HasMedia
         return Str::slug($name,'-');
     }
 
+    public function getPriceAttribute($value)
+    {
+        return Setting::first()->currency_prefix.' '.$value;
+    }
+    public function getSalePriceAttribute($value)
+    {   
+        if($value){
+            return Setting::first()->currency_prefix.' '.$value;
+        }
+        return $value;
+        
+    }
+
 }

@@ -114,6 +114,13 @@ Route::post('/admin/product/create', \App\Http\Controllers\Backend\Product\Creat
 Route::get('/admin/product/update/{id}', \App\Http\Controllers\Backend\Product\Update::class)->name('admin.product.update');
 Route::post('/admin/product/update/{id}', \App\Http\Controllers\Backend\Product\Update::class)->name('admin.product.post.update');
 Route::post('/admin/product/delete/{id}', \App\Http\Controllers\Backend\Product\Delete::class)->name('admin.product.delete');
+
+//Image process
+
+Route::get('/admin/product/images/{id}', \App\Http\Controllers\Backend\Product\Image\Index::class)->name('admin.product.images');
+Route::post('/admin/product/images/delete/{id}', \App\Http\Controllers\Backend\Product\Image\Delete::class)->name('admin.product.images.delete');
+Route::post('/admin/product/images/create', \App\Http\Controllers\Backend\Product\Image\Create::class)->name('admin.product.images.create');
+
 /*
 # Back-end orders - this section will be used to review orders and process them 
 Route::get('/admin/order', \App\Http\Controllers\Backend\Product\Index::class);

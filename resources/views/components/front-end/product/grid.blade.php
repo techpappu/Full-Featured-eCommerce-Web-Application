@@ -1,6 +1,12 @@
 <div class="products">
     <style>
         .mediaholder a img{height: 220px !important;}
+        .grid-add-to-cart a.button{
+            margin: 0px !important;
+            padding: 8px 0px;
+            width: 100%;
+            text-align: center;
+        }
     </style>
     <!-- Product #3 -->
     @foreach($rows as $row)
@@ -28,7 +34,7 @@
                     <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
                 </div>
 
-                <a href="variable-product-page.html">
+                <a href="{{route('product.single',['id'=>$row->id,'slug'=>$row->getSlug($row->name)])}}">
                     <section>
                         <span class="product-category">{{$row->categories()->first()->name}}</span>
                         <h5>{{$row->name}}</h5>
@@ -39,6 +45,9 @@
                         @endif
                     </section>
                 </a>
+                <div class="linking grid-add-to-cart">
+                    <a href="#" class="button adc">Add to Cart</a>
+                </div>
             </figure>
         </div>
     @endforeach
