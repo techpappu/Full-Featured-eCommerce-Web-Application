@@ -46,7 +46,13 @@
                     </section>
                 </a>
                 <div class="linking grid-add-to-cart">
-                    <a href="#" class="button adc">Add to Cart</a>
+                    <a href="javascript:" 
+                        data-id="{{$row->id}}"
+                        data-link="{{route('product.single',['id'=>$row->id,'slug'=>$row->getSlug($row->name)])}}"
+                        data-name="{{$row->name}}"
+                        data-image="{{$row->hasMedia('product') ? $row->getFirstMediaUrl('product','preview') : '' }}"
+                        data-price="{{ $row->sale_price ? $row->getRawOriginal('sale_price') : $row->getRawOriginal('price') }}"
+                        class="button adc">Add to Cart</a>
                 </div>
             </figure>
         </div>

@@ -1,0 +1,18 @@
+ul.ul-cart-List li{
+    position:relative;
+}
+
+ul.ul-cart-List li a.cart-remove {
+    position:absolute;
+    top:0;
+    right:0;
+    font-size:12px !important;
+    font-weight:300 !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+ul.ul-cart-List li a.cart-remove::before{
+    left: 6px!important;
+    top: 1px !important;
+}

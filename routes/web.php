@@ -36,10 +36,10 @@ Route::get('/categories', \App\Http\Controllers\Frontend\Category\Index::class)-
 Route::get('/category/{id}/{slug}', \App\Http\Controllers\Frontend\Category\Product::class)->name('category.single');
 Route::get('/product/{id}/{slug}', \App\Http\Controllers\Frontend\Product\Index::class)->name('product.single');
 
-/*
-# Front-end cart page
-Route::get('/cart', \App\Http\Controllers\Frontend\Cart\Index::class);
 
+# Front-end cart page
+Route::get('/cart', \App\Http\Controllers\Frontend\Cart\Index::class)->name('cart');
+/*
 # Front-end checkout pages
 Route::get('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class);
 Route::post('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class);

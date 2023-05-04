@@ -15,6 +15,7 @@
 <!-- CSS
 ================================================== -->
 <link rel="stylesheet" href="{{asset('')}}css/style.css">
+<link rel="stylesheet" href="{{asset('')}}css/custom.css">
 <link rel="stylesheet" href="{{asset('')}}css/colors/green.css" id="colors">
  
 <!--[if lt IE 9]>
@@ -174,6 +175,7 @@
 <script src="{{asset('scripts/puregrid.js')}}"></script>
 <script src="{{asset('scripts/stacktable.js')}}"></script>
 <script src="{{asset('scripts/custom.js')}}"></script>
+<script src="{{asset('assets/js/custom.js')}}"></script>
 
 
 <!-- Style Switcher
