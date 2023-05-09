@@ -30,7 +30,6 @@
                         <div class="cart-btns">
                             <a href="checkout-billing-details.html" class="button color cart-btns proceed">Proceed to
                                 Checkout</a>
-                            <a href="javascript:" class="button gray cart-btns">Update Cart</a>
                         </div>
                     </th>
                 </tr>
@@ -48,17 +47,7 @@
 
                 <tr>
                     <th>Cart Subtotal</th>
-                    <td><strong>BDT <span id="cart-total-amount">178.00</span></strong></td>
-                </tr>
-
-                <tr>
-                    <th>Shipping and Handling</th>
-                    <td>Free Shipping</td>
-                </tr>
-
-                <tr>
-                    <th>Order Total</th>
-                    <td><strong>$178.00</strong></td>
+                    <td><strong><span id="cart-total-amount">178.00</span></strong></td>
                 </tr>
 
             </table>

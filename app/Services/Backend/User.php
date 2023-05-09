@@ -29,16 +29,22 @@ class User
     }
 
     public function create(Request $request)
-    {
-        
+    {   
+
         $request->validate([
             'name' =>'required|min:3',
             'email' =>'required|string|email|max:255|unique:users',
             'password' =>'required|min:8|string|confirmed',
         ]);
         $data = $request->only(['name','email','password']);
+        $profiledata=$request->only(['address','city','district','postcode','phone']);
         $data['password']=Hash::make($data['password']);
         $row = \Facades\App\Models\User::create($data);
+        $row->profile()->create($profiledata);
+        
+        if($request->profile){
+            $row->addMedia($request->profile)->toMediaCollection('profile');
+        }
         if(!empty($row->id)) return true;
         return false;
 
@@ -70,17 +76,25 @@ class User
             ]);
             $data = $request->only(['name','email','password']);
             $data['password']=Hash::make($data['password']);
-
         } else{
 
             $data = $request->only(['name','email']);
 
         }
         
-        
+        $profiledata=$request->only(['address','city','district','postcode','phone']);
 
         if (!empty($row->id)) {
             $row->update($data);
+            $row->profile()->update($profiledata);
+
+            if($request->profile){
+                if($row->hasMedia('profile')){
+                    $row->getFirstMedia('profile')->delete();
+                }
+                $row->addMedia($request->profile)->toMediaCollection('profile');
+            }
+
             return true;
         }
 

@@ -2,7 +2,7 @@
 
     <!-- Button -->
     <div class="cart-btn">
-        <a href="#" class="button adc total">BDT <span class="totalAmount">0.00</span></a>
+        <a href="#" class="button adc total">{{$settings->currency_prefix}} <span class="totalAmount">0.00</span></a>
     </div>
 
     <div class="cart-list">
@@ -17,9 +17,8 @@
         </ul>
 
         <div class="cart-buttons button">
-            <a href="{{route('cart')}}" class="view-cart"><span data-hover="View Cart"><span>View
+            <a href="{{route('cart')}}" class="view-cart checkout"><span data-hover="View Cart"><span>View
                         Cart</span></span></a>
-            <a href="checkout-billing-details.html" class="checkout"><span data-hover="Checkout">Checkout</span></a>
         </div>
         <div class="clearfix">
 

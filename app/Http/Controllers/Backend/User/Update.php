@@ -14,9 +14,9 @@ class Update extends Controller
     {
         if ($request->isMethod('POST')){
             if (\Facades\App\Services\Backend\User::update($id,$request)) {
-                return redirect()->route('admin.user')->with('success','User Has been updated successfully');
+                return redirect()->route('admin.user.update',$id)->with('success','User Has been updated successfully');
             } else{
-                return redirect()->route('admin.user')->with('danger','user can not be updated!');
+                return redirect()->route('admin.user.update',$id)->with('danger','user can not be updated!');
             }
         }
         $data=[];

@@ -45,7 +45,7 @@
                         @endif
                     </section>
                 </a>
-                <div class="linking grid-add-to-cart">
+                <div class="linking grid-add-to-cart add-to-cart">
                     <a href="javascript:" 
                         data-id="{{$row->id}}"
                         data-link="{{route('product.single',['id'=>$row->id,'slug'=>$row->getSlug($row->name)])}}"

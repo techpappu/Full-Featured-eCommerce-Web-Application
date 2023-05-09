@@ -14,9 +14,7 @@
 
 <!-- CSS
 ================================================== -->
-<link rel="stylesheet" href="{{asset('')}}css/style.css">
-<link rel="stylesheet" href="{{asset('')}}css/custom.css">
-<link rel="stylesheet" href="{{asset('')}}css/colors/green.css" id="colors">
+<x-front-end.resource.css></x-front-end.resource.css>
  
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -26,59 +24,6 @@
 
 <body class="boxed">
 <div id="wrapper">
-
-
-<!-- Top Bar
-================================================== -->
-<div id="top-bar">
-	<div class="container">
-
-		<!-- Top Bar Menu -->
-		<div class="ten columns">
-			<ul class="top-bar-menu">
-				<li><i class="fa fa-phone"></i> (564) 123 4567</li>
-				<li><i class="fa fa-envelope"></i> <a href="#">mail@example.com</a></li>
-				<li>
-					<div class="top-bar-dropdown">
-						<span>English</span>
-						<ul class="options">
-							<li><div class="arrow"></div></li>
-							<li><a href="#">English</a></li>
-							<li><a href="#">Polish</a></li>
-							<li><a href="#">Deutsch</a></li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<div class="top-bar-dropdown">
-						<span>USD</span>
-						<ul class="options">
-							<li><div class="arrow"></div></li>
-							<li><a href="#">USD</a></li>
-							<li><a href="#">PLN</a></li>
-							<li><a href="#">EUR</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
-		
-		<!-- Social Icons -->
-		<div class="six columns">
-			<ul class="social-icons">
-				<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-				<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-				<li><a class="dribbble" href="#"><i class="icon-dribbble"></i></a></li>
-				<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-				<li><a class="pinterest" href="#"><i class="icon-pinterest"></i></a></li>
-			</ul>
-		</div>
-
-	</div>
-</div>
-
-<div class="clearfix"></div>
-
 
 <!-- Header
 ================================================== -->
@@ -134,35 +79,7 @@
 
 <!-- Java Script
 ================================================== -->
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="{{asset('scripts/jquery.jpanelmenu.js')}}"></script>
-<script src="{{asset('scripts/jquery.themepunch.plugins.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.themepunch.revolution.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.themepunch.showbizpro.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('scripts/hoverIntent.js')}}"></script>
-<script src="{{asset('scripts/superfish.js')}}"></script>
-<script src="{{asset('scripts/jquery.pureparallax.js')}}"></script>
-<script src="{{asset('scripts/jquery.pricefilter.js')}}"></script>
-<script src="{{asset('scripts/jquery.selectric.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.royalslider.min.js')}}"></script>
-<script src="{{asset('scripts/SelectBox.js')}}"></script>
-<script src="{{asset('scripts/modernizr.custom.js')}}"></script>
-<script src="{{asset('scripts/waypoints.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.flexslider-min.js')}}"></script>
-<script src="{{asset('scripts/jquery.counterup.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.tooltips.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.isotope.min.js')}}"></script>
-<script src="{{asset('scripts/puregrid.js')}}"></script>
-<script src="{{asset('scripts/stacktable.js')}}"></script>
-<script src="{{asset('scripts/custom.js')}}"></script>
-<script src="{{asset('assets/js/custom.js')}}"></script>
-
-
-<!-- Style Switcher
-================================================== -->
-<script src="{{asset('scripts/switcher.js')}}"></script>
+<x-front-end.resource.js></x-front-end.resource.js>
 
 <div id="style-switcher">
 	<h2>Style Switcher <a href="#"></a></h2>

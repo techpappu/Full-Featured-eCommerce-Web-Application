@@ -29,7 +29,6 @@ class Product
 
     public function create(Request $request)
     {
-        
         $request->validate([
             'name' =>'required|min:5',
             'price'  =>'required',

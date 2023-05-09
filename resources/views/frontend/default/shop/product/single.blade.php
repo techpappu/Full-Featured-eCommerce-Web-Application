@@ -77,11 +77,18 @@
 
                     <form action='#'>
                         <div class="qtyminus"></div>
-                        <input type='text' name="quantity" value='1' class="qty" />
+                        <input type='text' name="quantity" id="product_quantity" value='1' class="qty" />
                         <div class="qtyplus"></div>
                     </form>
-
-                    <a href="#" class="button adc">Add to Cart</a>
+                    <div class="add-to-cart">
+                        <a href="javascript:" 
+                        data-id="{{$data['row']->id}}"
+                        data-link="{{route('product.single',['id'=>$data['row']->id,'slug'=>$data['row']->getSlug($data['row']->name)])}}"
+                        data-name="{{$data['row']->name}}"
+                        data-image="{{$data['row']->hasMedia('product') ? $data['row']->getFirstMediaUrl('product','preview') : '' }}"
+                        data-price="{{ $data['row']->sale_price ? $data['row']->getRawOriginal('sale_price') : $data['row']->getRawOriginal('price') }}"
+                        class="button adc">Add to Cart</a>
+                    </div>
                     <div class="clearfix"></div>
 
                 </section>
