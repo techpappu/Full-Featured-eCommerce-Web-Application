@@ -28,7 +28,7 @@
                         </form>
 
                         <div class="cart-btns">
-                            <a href="checkout-billing-details.html" class="button color cart-btns proceed">Proceed to
+                            <a href="{{route('checkout')}}" class="button color cart-btns proceed">Proceed to
                                 Checkout</a>
                         </div>
                     </th>

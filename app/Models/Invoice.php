@@ -20,7 +20,7 @@ class Invoice extends Model
         return $this->hasMany(InvoiceItem::class);
     }
 
-    public function Shipping()
+    public function shipping()
     {
         return $this->belongsTo(Shipping::class);
     }
@@ -28,5 +28,21 @@ class Invoice extends Model
     public function invoiceTaxes()
     {
         return $this->hasMany(InvoiceTax::class);
+    }
+
+    /**
+     * Get the user associated with the Invoice
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+
+    /**
+     * Get the user that owns the Invoice
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -39,10 +39,13 @@ Route::get('/product/{id}/{slug}', \App\Http\Controllers\Frontend\Product\Index:
 
 # Front-end cart page
 Route::get('/cart', \App\Http\Controllers\Frontend\Cart\Index::class)->name('cart');
-/*
+
 # Front-end checkout pages
-Route::get('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class);
-Route::post('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class);
+Route::get('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class)->name('checkout');
+Route::post('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class)->name('checkout.post');
+Route::get('/checkout/{id}/payment', \App\Http\Controllers\Frontend\Checkout\Payment::class)->name('checkout.payment');
+Route::post('/checkout/{id}/payment', \App\Http\Controllers\Frontend\Checkout\Payment::class)->name('checkout.payment.post');
+/*
 Route::get('/checkout/delivery', \App\Http\Controllers\Frontend\Checkout\Delivery::class);
 Route::post('/checkout/delivery', \App\Http\Controllers\Frontend\Checkout\Delivery::class);
 Route::get('/checkout/payment', \App\Http\Controllers\Frontend\Checkout\Payment::class);

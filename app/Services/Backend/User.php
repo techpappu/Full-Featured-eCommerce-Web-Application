@@ -32,12 +32,11 @@ class User
     {   
 
         $request->validate([
-            'name' =>'required|min:3',
             'email' =>'required|string|email|max:255|unique:users',
             'password' =>'required|min:8|string|confirmed',
         ]);
-        $data = $request->only(['name','email','password']);
-        $profiledata=$request->only(['address','city','district','postcode','phone']);
+        $data = $request->only(['email','password']);
+        $profiledata=$request->only(['first_name','last_name','address','city','district','postcode','phone']);
         $data['password']=Hash::make($data['password']);
         $row = \Facades\App\Models\User::create($data);
         $row->profile()->create($profiledata);
@@ -64,25 +63,21 @@ class User
                 'email' =>'required|string|email|max:255|unique:users',
             ]);
         }
-        $request->validate([
-            'name' =>'required|min:3',
-        ]);
-        
-        
+
         if (request('password')){
 
             $request->validate([
                 'password' =>'required|min:8|string|confirmed',
             ]);
-            $data = $request->only(['name','email','password']);
+            $data = $request->only(['email','password']);
             $data['password']=Hash::make($data['password']);
         } else{
 
-            $data = $request->only(['name','email']);
+            $data = $request->only(['email']);
 
         }
         
-        $profiledata=$request->only(['address','city','district','postcode','phone']);
+        $profiledata=$request->only(['first_name','last_name','address','city','district','postcode','phone']);
 
         if (!empty($row->id)) {
             $row->update($data);

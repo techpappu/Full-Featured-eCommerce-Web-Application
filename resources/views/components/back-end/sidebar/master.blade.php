@@ -94,7 +94,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <!--- Product sidebar -->
                 <li>
                     <a href="javascript: void(0);">
@@ -105,6 +104,18 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{ route('admin.product') }}">All Products</a></li>
                         <li><a href="{{ route('admin.product.create') }}">Create New Product</a></li>
+                    </ul>
+                </li>
+                <!--- Product sidebar -->
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="ti-shopping-cart-full"></i>
+                        <span> Orders </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('admin.order') }}">All Orders</a></li>
+                        <li><a href="{{ route('admin.order.create') }}">Create New Order</a></li>
                     </ul>
                 </li>
 

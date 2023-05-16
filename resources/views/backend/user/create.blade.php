@@ -20,10 +20,6 @@
                     <h1 class="text-center">User</h1>
                     <x-back-end.validationAlert></x-back-end.validationAlert>
                     <div class="form-group">
-                        <label for="name" class="required">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{ request()->input('name', old('name')) }}" placeholder="Enter name">
-                    </div>
-                    <div class="form-group">
                         <label for="exampleInputEmail1" class="required">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" value="{{ request()->input('email', old('email')) }}" name="email" placeholder="Enter email">
                     </div>
@@ -41,6 +37,16 @@
                 </div>
                 <div class="card-box">
                     <h1 class="text-center">Profile</h1>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" name="first_name" id="first_name" value="{{ request()->input('first_name', old('first_name')) }}" placeholder="Enter First Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" id="last_name" value="{{ request()->input('last_name', old('last_name')) }}" placeholder="Enter Last Name">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="address">Address</label>
                         <input type="text" class="form-control" name="address" id="address" value="{{ request()->input('address', old('address')) }}" placeholder="Enter Address">
@@ -91,13 +97,11 @@
     <script>
         $("#form").validate({
             rules: {
-                name: 'required',
                 email: 'required',
                 password: 'required',
                 password_confirmation: 'required',
             },
             messages: {
-                name: "Please enter a name",
                 email: "Please enter an unique Email",
                 password: 'Please enter password',
                 password_confirmation: 'Please enter password confirmation',

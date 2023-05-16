@@ -66,4 +66,14 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasOne(Profile::class);
     }
+
+    /**
+     * Get all of the Invoice for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

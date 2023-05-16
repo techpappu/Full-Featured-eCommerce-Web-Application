@@ -1,10 +1,10 @@
 <x-back-end.master>
     @section('page-title')
-        Users <a href="{{route('admin.user.create')}}" class="btn btn-outline-primary waves-effect waves-light">Add New</a>
+        Orders
     @endsection
     @section('breadcrumb')
-        <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
-        <li class="breadcrumb-item"><a href="javascript: void(0);">All Users</a></li>
+        <li class="breadcrumb-item"><a href="javascript: void(0);">Orders</a></li>
+        <li class="breadcrumb-item"><a href="javascript: void(0);">All Orders</a></li>
     @endsection
     @section('content')
     <div class="card-box pb-0 overflow-hidden">
@@ -14,10 +14,11 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
+                    <th>name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Billing</th>
+                    <th>Total</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -25,18 +26,21 @@
                 @foreach ($data['rows'] as $row)
                     <tr>
                         <td>{{$row->id}}</td>
-                        <td>{{$row->profile->first_name}} {{$row->profile->last_name}}</td>
-                        <td>{{$row->email}}</td>
-                        <td>{{$row->created_at->diffForHumans()}}</td>
-                        <td>{{$row->updated_at->diffForHumans()}}</td>
+                        <td><a href="{{route('admin.order.view',$row->id)}}">{{$row->user->profile->first_name}} {{$row->user->profile->last_name}}</a></td>
+                        <td>
+                            {{$row->created_at->diffForHumans()}}
+                        </td>
+                        <td>{{$row->status}}</td>
+                        <td>
+                            {{$row->user->profile->address}}<br>
+                            {{$row->user->profile->district}}
+                        </td>
+                        <td>{{$row->grand_total}}</td>
                         <td>
                             <div class="d-inline">
-                                <a href="{{route('admin.user.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
+                                <a href="{{route('admin.page.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
                                         <i class="far fa-edit"></i>
                                 </a>
-                               
-                                <x-back-end.button.delete :row="$row" :action="route('admin.user.delete',$row->id)"></x-back-end.button.delete>
-                                
                             </div>
                         </td>
                     </tr>
@@ -60,7 +64,7 @@
             var name = $(this).data("name");
             event.preventDefault();
             Swal.fire({
-            title: 'Are you sure, You want to delete this user?',
+            title: 'Are you sure, You want to delete this Page?',
             text: "You won't be able to revert this!",
             type: 'warning',
             showCancelButton: true,
@@ -72,7 +76,7 @@
                 
                 Swal.fire(
                 'Deleted!',
-                'Your file has been deleted.',
+                'You page has been deleted.',
                 'success'
                 )
                 form.submit();

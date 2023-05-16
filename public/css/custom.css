@@ -16,3 +16,34 @@ ul.ul-cart-List li a.cart-remove::before{
     left: 6px!important;
     top: 1px !important;
 }
+button.continue{
+    background-color: #3ACF87;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+.payment-selection ul{
+    margin: 20px 0px;
+    
+}
+.payment-selection ul li{
+    display: flex;
+    margin-bottom:10px;
+}
+.payment-selection ul li label{
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+
+.thank-you-page {
+    text-align: center;
+}
+.thank-you-page h1{
+    color:#37C37F;
+    font-size:40px;
+}
+
+.thank-you-page p{
+    color:#009688;
+}

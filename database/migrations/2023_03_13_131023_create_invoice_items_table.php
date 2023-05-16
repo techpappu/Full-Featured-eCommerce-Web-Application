@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreignId('product_id')->references('id')->on('products');
             $table->integer('quantity');
             $table->double('price', 15, 2);
             $table->double('total', 15, 2);
