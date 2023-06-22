@@ -64,10 +64,10 @@
 			<div id="logo">
 				
 					<h1><a href="{{route('home')}}">
-						@if ($settings->hasMedia('settings'))
+						@if (!empty($settings->hasMedia('settings')))
 							<img src="{{$settings->getFirstMediaUrl('settings')}}" alt="Trizzy" />
 						@else
-						<img src="{{asset('/')}}images/logo.png" alt="Trizzy" />
+						<img src="{{asset('/images/logo.png')}}" alt="Trizzy" />
 						@endif
 					</a></h1>
 				
