@@ -21,5 +21,12 @@ class DatabaseSeeder extends Seeder
         \App\Models\Setting::create([
             'title' => 'This is site title'
         ]);
+
+        \Facades\Spatie\Permission\Models\Role::create([
+            'name' => 'admin'
+        ]);
+        \Facades\Spatie\Permission\Models\Role::create([
+            'name' => 'member'
+        ]);
     }
 }

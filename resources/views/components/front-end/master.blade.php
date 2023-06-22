@@ -15,7 +15,7 @@
 <!-- CSS
 ================================================== -->
 <x-front-end.resource.css></x-front-end.resource.css>
- 
+ @yield('css')
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -98,6 +98,8 @@
 <!-- Java Script
 ================================================== -->
 <x-front-end.resource.js></x-front-end.resource.js>
+
+@yield('script')
 
 <div id="style-switcher">
 	<h2>Style Switcher <a href="#"></a></h2>

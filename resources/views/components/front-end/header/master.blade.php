@@ -81,7 +81,8 @@
 		<div id="additional-menu">
 			<ul>
 				<li><a href="{{route('cart')}}">Shopping Cart</a></li>
-				<li><a href="wishlist.html">WishList <span>(2)</span></a></li>
+				<li><a href="{{route('frontend.login')}}">Login</a></li>
+				<li><a href="{{route('frontend.register')}}">Register</a></li>
 				<li><a href="my-account.html">My Account</a></li>
 			</ul>
 		</div>

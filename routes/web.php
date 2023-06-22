@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', \App\Http\Controllers\Frontend\Page\Landing::class)->name('home');
+Route::get('/login', \App\Http\Controllers\Frontend\Login::class)->name('frontend.login');
+Route::post('/login', \App\Http\Controllers\Frontend\Login::class)->name('frontend.login.post');
+Route::get('/register', \App\Http\Controllers\Frontend\Register::class)->name('frontend.register');
+Route::post('/register', \App\Http\Controllers\Frontend\Register::class)->name('frontend.register.post');
 /*
 # Front-end landing page, login and register pages
 Route::get('/', \App\Http\Controllers\Frontend\Index::class);
-Route::get('/login', \App\Http\Controllers\Frontend\Login::class);
-Route::post('/login', \App\Http\Controllers\Frontend\Login::class);
-Route::get('/register', \App\Http\Controllers\Frontend\Register::class);
-Route::post('/register', \App\Http\Controllers\Frontend\Register::class);
 Route::get('/change-password', \App\Http\Controllers\Frontend\ChangePassword::class);
 Route::post('/change-password', \App\Http\Controllers\Frontend\ChangePassword::class);
 Route::get('/reset-password', \App\Http\Controllers\Frontend\ResetPassword::class);
