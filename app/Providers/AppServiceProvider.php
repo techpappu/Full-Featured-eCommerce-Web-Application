@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('settings', \Facades\App\Models\Setting::first());
+        View::share('menuCategory', \Facades\App\Models\Category::orderBy('name')->limit(4)->get());
         Paginator::useBootstrap();
     }
 }
