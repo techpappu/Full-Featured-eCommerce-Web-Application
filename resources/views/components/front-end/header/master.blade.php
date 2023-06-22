@@ -6,10 +6,10 @@
 		<!-- Top Bar Menu -->
 		<div class="ten columns">
 			<ul class="top-bar-menu">
-				@if ($settings->phone)
+				@if (!empty($settings->phone))
 					<li><i class="fa fa-phone"></i>{{$settings->phone}}</li>
 				@endif
-				@if ($settings->email)
+				@if (!empty($settings->email))
 					<li><i class="fa fa-envelope"></i>
 						<a href="mailto:{{$settings->email}}">{{$settings->email}}</a>
 					</li>
@@ -26,7 +26,7 @@
 					</div>
 				</li>
 				<li>
-					@if ($settings->currency_prefix)
+					@if (!empty($settings->currency_prefix))
 						<div class="top-bar-dropdown">
 							<span>{{$settings->currency_prefix}}</span>
 						</div>
@@ -38,13 +38,13 @@
 		<!-- Social Icons -->
 		<div class="six columns">
 			<ul class="social-icons">
-				@if ($settings->facebook)
+				@if (!empty($settings->facebook))
 					<li><a class="facebook" href="{{$settings->facebook}}"><i class="icon-facebook"></i></a></li>
 				@endif
-				@if ($settings->twitter)
+				@if (!empty($settings->twitter))
 					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
 				@endif
-				@if ($settings->youtube)
+				@if (!empty($settings->youtube))
 					<li><a class="youtube" href="{{$settings->facebook}}"><i class="icon-youtube"></i></a></li>
 				@endif
 			</ul>
