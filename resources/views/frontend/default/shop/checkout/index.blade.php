@@ -125,8 +125,9 @@
             </div>
             <!-- Checkout Cart / End -->
         @else
-            <div class="missing_shipping">
-                Shipping & Payment method are not set! Can not procedd with Checkout!
+            <div class="notification error closeable">
+                <p>Shipping & Payment method are not set! Can not procedd with Checkout!</p>
+                <a class="close"></a>
             </div>
         @endif
         

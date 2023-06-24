@@ -47,12 +47,3 @@ button.continue{
 .thank-you-page p{
     color:#009688;
 }
-
-.missing_shipping {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    padding:10px;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-}
