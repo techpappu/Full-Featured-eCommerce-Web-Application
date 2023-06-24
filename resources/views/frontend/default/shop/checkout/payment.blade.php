@@ -13,7 +13,7 @@
     @section('content')
     <!-- Container -->
     <div class="container">
-        <x-back-end.message></x-back-end.message>
+        <x-front-end.message></x-front-end.message>
         <div class="eight columns">
 
 

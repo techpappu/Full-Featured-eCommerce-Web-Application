@@ -16,7 +16,7 @@ class Index extends Controller
             $invoice=\Facades\App\Services\Frontend\Checkout::create($request);
 
             if(!empty($invoice->id)){
-                return redirect()->route('checkout.payment',$invoice->id)->with('success','recorded your order. Please confirm you payment to process');
+                return redirect()->route('checkout.payment',$invoice->id)->with('success','recorded your order. Please confirm your payment to process');
             } else{
                 return 'order not been Made!';
             }
