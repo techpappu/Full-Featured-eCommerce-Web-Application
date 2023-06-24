@@ -25,7 +25,7 @@
                 @foreach ($data['rows'] as $row)
                     <tr>
                         <td>{{$row->id}}</td>
-                        <td><a href="{{route('admin.shipping.update',$row->id)}}">{{$row->label}}</a></td>
+                        <td><a href="{{route('admin.payment.update',$row->id)}}">{{$row->label}}</a></td>
                         <td>{{$row->status}}</td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
                         <td>{{$row->updated_at->diffForHumans()}}</td>

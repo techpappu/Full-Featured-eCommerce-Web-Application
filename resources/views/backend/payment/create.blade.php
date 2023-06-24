@@ -1,10 +1,10 @@
 <x-back-end.master>
     @section('page-title')
-    Create New Shipping
+    Create New Payment
     @endsection
     @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="javascript: void(0);">Shippings</a></li>
-    <li class="breadcrumb-item"><a href="javascript: void(0);">Create New Shipping</a></li>
+    <li class="breadcrumb-item"><a href="javascript: void(0);">Payments</a></li>
+    <li class="breadcrumb-item"><a href="javascript: void(0);">Create New Payment</a></li>
     @endsection
     @section('content')
     <div class="card-box overflow-hidden">
