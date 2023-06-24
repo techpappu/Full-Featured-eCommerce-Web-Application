@@ -91,6 +91,14 @@ Route::get('/admin/shipping/update/{id}', \App\Http\Controllers\Backend\Shipping
 Route::post('/admin/shipping/update/{id}', \App\Http\Controllers\Backend\Shipping\Update::class)->name('admin.shipping.post.update');
 Route::post('/admin/shipping/delete/{id}', \App\Http\Controllers\Backend\Shipping\Delete::class)->name('admin.shipping.delete');
 
+# Back-end Payments - this section will be used to manage shop default Payment methods and create new Payment methods
+Route::get('/admin/payment', \App\Http\Controllers\Backend\Payment\Index::class)->name('admin.payment');
+Route::get('/admin/payment/create', \App\Http\Controllers\Backend\Payment\Create::class)->name('admin.payment.create');
+Route::post('/admin/payment/create', \App\Http\Controllers\Backend\Payment\Create::class)->name('admin.payment.post.create');
+Route::get('/admin/payment/update/{id}', \App\Http\Controllers\Backend\Payment\Update::class)->name('admin.payment.update');
+Route::post('/admin/payment/update/{id}', \App\Http\Controllers\Backend\Payment\Update::class)->name('admin.payment.post.update');
+Route::post('/admin/payment/delete/{id}', \App\Http\Controllers\Backend\Payment\Delete::class)->name('admin.payment.delete');
+
 # Back-end discounts - this section will be used to manage shop default discounts and create new discounts
 Route::get('/admin/discount', \App\Http\Controllers\Backend\Discount\Index::class)->name('admin.discount');
 Route::get('/admin/discount/create', \App\Http\Controllers\Backend\Discount\Create::class)->name('admin.discount.create');

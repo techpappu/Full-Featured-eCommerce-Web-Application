@@ -66,6 +66,19 @@
                         </li>
                     </ul>
                 </li>
+                <!--- Payment sidebar -->
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fab fa-cc-visa"></i>
+                        <span> Payments </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('admin.payment') }}">All Payments</a></li>
+                        <li><a href="{{ route('admin.payment.create') }}">Create New Payment</a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!--- Discount sidebar -->
                 <li>
