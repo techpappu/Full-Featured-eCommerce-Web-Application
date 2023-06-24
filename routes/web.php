@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\Frontend\Page\Landing::class)->name('home');
 Route::get('/login', \App\Http\Controllers\Frontend\Login::class)->name('frontend.login');
 Route::post('/login', \App\Http\Controllers\Frontend\Login::class)->name('frontend.login.post');
+Route::get('/logout', function(){auth()->logout(); return redirect()->route('home');})->name('frontend.logout');
 Route::get('/register', \App\Http\Controllers\Frontend\Register::class)->name('frontend.register');
 Route::post('/register', \App\Http\Controllers\Frontend\Register::class)->name('frontend.register.post');
 /*

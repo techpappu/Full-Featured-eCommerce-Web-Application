@@ -35,7 +35,7 @@
                             {{$row->user->profile->address}}<br>
                             {{$row->user->profile->district}}
                         </td>
-                        <td>{{$row->grand_total}}</td>
+                        <td>{{$settings->currency_prefix}} {{number_format((float)$row->grand_total,2,'.'.'')}}</td>
                         <td>
                             <div class="d-inline">
                                 <a href="{{route('admin.page.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">

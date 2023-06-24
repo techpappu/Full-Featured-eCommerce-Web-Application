@@ -14,7 +14,7 @@
 						<a href="mailto:{{$settings->email}}">{{$settings->email}}</a>
 					</li>
 				@endif
-				<li>
+				{{-- <li>
 					<div class="top-bar-dropdown">
 						<span>English</span>
 						<ul class="options">
@@ -31,7 +31,7 @@
 							<span>{{$settings->currency_prefix}}</span>
 						</div>
 					@endif
-				</li>
+				</li> --}}
 			</ul>
 		</div>
 		
@@ -81,9 +81,15 @@
 		<div id="additional-menu">
 			<ul>
 				<li><a href="{{route('cart')}}">Shopping Cart</a></li>
-				<li><a href="{{route('frontend.login')}}">Login</a></li>
-				<li><a href="{{route('frontend.register')}}">Register</a></li>
-				<li><a href="my-account.html">My Account</a></li>
+				@if (auth()->check())
+					<li><a href="my-account.html">My Account</a></li>
+					<li><a href="{{route('frontend.logout')}}">Logout</a></li>
+				@else
+					<li><a href="{{route('frontend.login')}}">Login</a></li>
+					<li><a href="{{route('frontend.register')}}">Register</a></li>
+				@endif
+				
+				
 			</ul>
 		</div>
 	</div>

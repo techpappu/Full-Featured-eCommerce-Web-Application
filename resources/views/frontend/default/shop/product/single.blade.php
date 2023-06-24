@@ -49,7 +49,7 @@
                         <span class="product-price ">{{$data['row']->sale_price}}</span>
                     </div>
                     @else
-                    <span class="product-price">${{$data['row']->price}}</span>
+                    <span class="product-price">{{$data['row']->price}}</span>
                     @endif
                     
                 </section>

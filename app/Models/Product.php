@@ -66,12 +66,12 @@ class Product extends Model implements HasMedia
 
     public function getPriceAttribute($value)
     {
-        return Setting::first()->currency_prefix.' '.$value;
+        return Setting::first()->currency_prefix.' '.number_format((float)$value,2,'.'.'');
     }
     public function getSalePriceAttribute($value)
     {   
         if($value){
-            return Setting::first()->currency_prefix.' '.$value;
+            return Setting::first()->currency_prefix.' '.number_format((float)$value,2,'.'.'');
         }
         return $value;
         
