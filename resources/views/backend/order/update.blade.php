@@ -128,12 +128,14 @@
                                 <td>{{$items->product->name}}</td>
                                 <td> {{$settings->currency_prefix}} {{$items->price}}</td>
                                 <td width="165px">
-                                    <div class="qtyminus" ></div>
-                                    <input type="hidden" name="items[]" value="{{$items->id}}">
-                                    <input type="text" id="number" name="quantity[]" value="{{$items->quantity}}" class="qty" />
+                                    <div class="qtyminus"></div>
+                                    <input type="hidden" name="items[]" id="id_{{$items->id}}" value="{{$items->id}}">
+                                    <input type="hidden" name="prices[]" id="price_{{$items->id}}" value="{{$items->price}}">
+                                    <input type="hidden" name="amounts[]" id="amount_{{$items->id}}" value="{{$items->price}}">
+                                    <input type="text" id="quantity_{{$items->id}}" name="quantity[]" value="{{$items->quantity}}" class="qty" onchange="quantityChanged(this.id);"/>
                                     <div class="qtyplus" ></div>
                                 </td>
-                                <td>{{$settings->currency_prefix}} {{number_format((float)$items->total,2,'.','')}}</td>
+                                <td>{{$settings->currency_prefix}} <span id="amount_text_{{$items->id}}">{{number_format((float)$items->total,2,'.','')}}</span></td>
                                                 
                                 
                             </tr>
@@ -143,11 +145,11 @@
 
                             <tr>
                                 <th colspan="4" class="text-right">Total:</th>
-                                <th>{{$settings->currency_prefix}} {{$data['row']->gross_total}}</th>
+                                <th>{{$settings->currency_prefix}} <span id="grossTotal">{{$data['row']->gross_total}}</span></th>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right">Discount:</td>
-                                <td>{{$settings->currency_prefix}} 00.00</td>
+                                <td>{{$settings->currency_prefix}} 0.00</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right">Total Tax:</td>
@@ -159,7 +161,7 @@
                             </tr>
                             <tr>
                                 <th colspan="4" class="text-right">Grand Total:</th>
-                                <th>{{$settings->currency_prefix}} {{number_format((float)$data['row']->grand_total,2,'.'.'')}}</th>
+                                <th>{{$settings->currency_prefix}} <span id="grandTotal">{{number_format((float)$data['row']->grand_total,2,'.'.'')}}</span></th>
                             </tr>
                         </table>
 
@@ -174,24 +176,67 @@
 
     </div>
 
-    
-
-    
     @endsection 
     @section('script')
     <script>
-        // Product Quantity
-		//----------------------------------------//
+
+        var totalAmount = {{$data['row']->gross_total ?? 0}};
+        var discountAmount = 0;
+        var taxAmount = {{$data['row']->tax_total ?? 0}};
+        var shippingAmount = {{$data['row']->shipping->amount ?? 0}};
+        var grandTotal = 0;
+
+        function quantityChanged(me)
+        {
+            var id = me.split('_');
+
+            var itemId = id[1];
+
+            var qty = parseInt($('#quantity_'+itemId).val());
+            var price = parseFloat($('#price_'+itemId).val());
+
+            var amount = parseFloat(price * qty);
+
+            $('#amount_'+itemId).val(amount.toFixed(2));
+
+            $('span#amount_text_'+itemId).html(amount.toFixed(2));
+
+            calculateTotal();
+        }
+
+        function calculateTotal()
+        {
+            window.totalAmount = 0;
+
+            var hiddenAmounts = $('input[name="amounts[]"]');
+
+            for(var i=0; i < hiddenAmounts.length; i++)
+            {
+                window.totalAmount = parseFloat(window.totalAmount) + parseFloat(hiddenAmounts[i].value);
+            }
+
+            $('#grossTotal').html(window.totalAmount.toFixed(2));
+
+            window.grandTotal = parseFloat(window.totalAmount) - parseFloat(window.discountAmount) + parseFloat(window.taxAmount) + parseFloat(window.shippingAmount);
+
+            $('#grandTotal').html(window.grandTotal.toFixed(2));
+
+        }
+
 		var thisrowfield;
+
 		$('.qtyplus').click(function(e){
 			e.preventDefault();
+
 			thisrowfield = $(this).parent().parent().find('.qty');
 
 			var currentVal = parseInt(thisrowfield.val());
 			if (!isNaN(currentVal)) {
 				thisrowfield.val(currentVal + 1);
+                thisrowfield.trigger('onchange');
 			} else {
 				thisrowfield.val(0);
+                thisrowfield.trigger('onchange');
 			}
 		});
 
@@ -201,8 +246,10 @@
 			var currentVal = parseInt(thisrowfield.val());
 			if (!isNaN(currentVal) && currentVal > 1) {
 				thisrowfield.val(currentVal - 1);
+                thisrowfield.trigger('onchange');
 			} else {
 				thisrowfield.val(0);
+                thisrowfield.trigger('onchange');
 			}
 		});
     </script>
