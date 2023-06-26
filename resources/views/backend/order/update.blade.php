@@ -131,7 +131,7 @@
                                     <div class="qtyminus"></div>
                                     <input type="hidden" name="items[]" id="id_{{$items->id}}" value="{{$items->id}}">
                                     <input type="hidden" name="prices[]" id="price_{{$items->id}}" value="{{$items->price}}">
-                                    <input type="hidden" name="amounts[]" id="amount_{{$items->id}}" value="{{$items->price}}">
+                                    <input type="hidden" name="amounts[]" id="amount_{{$items->id}}" value="{{$items->price*$items->quantity}}">
                                     <input type="text" id="quantity_{{$items->id}}" name="quantity[]" value="{{$items->quantity}}" class="qty" onchange="quantityChanged(this.id);"/>
                                     <div class="qtyplus" ></div>
                                 </td>
@@ -153,7 +153,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right">Total Tax:</td>
-                                <td>{{$settings->currency_prefix}} {{number_format((float)$data['row']->tax_total,2,'.','')}}</td>
+                                <td>{{$settings->currency_prefix}} <span id="taxTotal">{{number_format((float)$data['row']->tax_total,2,'.','')}}</span></td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right">Shipping({{$data['row']->shipping->label}}):</td>
@@ -183,6 +183,7 @@
         var totalAmount = {{$data['row']->gross_total ?? 0}};
         var discountAmount = 0;
         var taxAmount = {{$data['row']->tax_total ?? 0}};
+        var taxRate=Math.ceil((100/totalAmount)*taxAmount);
         var shippingAmount = {{$data['row']->shipping->amount ?? 0}};
         var grandTotal = 0;
 
@@ -209,13 +210,15 @@
             window.totalAmount = 0;
 
             var hiddenAmounts = $('input[name="amounts[]"]');
+            console.log(hiddenAmounts);
 
             for(var i=0; i < hiddenAmounts.length; i++)
             {
                 window.totalAmount = parseFloat(window.totalAmount) + parseFloat(hiddenAmounts[i].value);
             }
-
             $('#grossTotal').html(window.totalAmount.toFixed(2));
+            window.taxAmount=(window.totalAmount/100)*window.taxRate;
+            $('#taxTotal').html(window.taxAmount.toFixed(2));
 
             window.grandTotal = parseFloat(window.totalAmount) - parseFloat(window.discountAmount) + parseFloat(window.taxAmount) + parseFloat(window.shippingAmount);
 
