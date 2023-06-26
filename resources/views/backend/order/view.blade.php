@@ -30,13 +30,14 @@
                             <div class="float-sm-left mt-4">
                                 <address>
                                     <strong>{{$data['row']->user->profile->first_name}} {{$data['row']->user->profile->last_name}}</strong><br>
-                                    {{$data['row']->user->profile->address}}<br>
-                                    {{$data['row']->user->profile->city}} {{$data['row']->user->profile->district}}<br>
-                                    <abbr title="Phone">P:</abbr> {{$data['row']->user->profile->phone}}
+                                    Address: {{$data['row']->user->profile->address}}<br>
+                                    District: {{$data['row']->user->profile->district}}<br> 
+                                    City: {{$data['row']->user->profile->city}} Post Code: {{$data['row']->user->profile->postcode}}<br>
+                                    Phone number: {{$data['row']->user->profile->phone}}
                                 </address>
                             </div>
                             <div class="mt-4 text-sm-right">
-                                <p><strong>Order Date: </strong>{{$data['row']->invoice_date}}</p>
+                                <p><strong>Order Date: </strong>{{date('d-m-Y', strtotime($data['row']->invoice_date))}}</p>
                                 <p><strong>Order Status: </strong> <span class="badge badge-danger">{{$data['row']->status}}</span></p>
                                 <p><strong>Order ID: </strong> #{{$data['row']->id}}</p>
                             </div>
@@ -68,7 +69,7 @@
                                                 
                                                 <td>{{$items->product->name}}</td>
                                                 <td>{{$items->quantity}}</td>
-                                                <td>{{$settings->currency_prefix}} {{number_format((float)$items->product->getRawOriginal('price'),2,'.','')}}</td>
+                                                <td>{{$settings->currency_prefix}} {{number_format((float)$items->price,2,'.','')}}</td>
                                                 <td>{{$settings->currency_prefix}} {{number_format((float)$items->total,2,'.','')}}</td>
                                             </tr>
                                         @endforeach
@@ -99,7 +100,7 @@
                                     <p>{{$taxes->label}}: <span>{{$settings->currency_prefix}} {{number_format((float)$taxes->amount,2,'.','')}}</span></p><br>
                                 @endforeach
                                 <hr>
-                                <p>total Taxes: <span>{{$settings->currency_prefix}} {{number_format((float)$data['row']->tax_total,2,'.','')}}</span></p><br>
+                                <p>Total Tax: <span>{{$settings->currency_prefix}} {{number_format((float)$data['row']->tax_total,2,'.','')}}</span></p><br>
                                 <hr>
                                 <h3>{{$settings->currency_prefix}} {{number_format((float)$data['row']->grand_total,2,'.'.'')}}</h3>
                             </div>
@@ -109,7 +110,7 @@
                     <div class="d-print-none">
                         <div class="float-right">
                             <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>
-                            <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
+                            <a href="{{route('admin.order')}}" class="btn btn-light">back</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>

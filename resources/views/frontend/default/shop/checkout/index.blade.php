@@ -18,7 +18,7 @@
                 @csrf
                 
                 <div class="eight columns">
-
+                    <x-front-end.validationAlert></x-front-end.validationAlert>
                     <!-- Checkout Content -->
                     <div class="checkout-section active"><span>1</span> Billing Details</div>
                     <div class="checkout-content">

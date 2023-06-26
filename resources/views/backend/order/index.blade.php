@@ -38,7 +38,7 @@
                         <td>{{$settings->currency_prefix}} {{number_format((float)$row->grand_total,2,'.'.'')}}</td>
                         <td>
                             <div class="d-inline">
-                                <a href="{{route('admin.page.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
+                                <a href="{{route('admin.order.update',$row->id)}}" class="btn d-inline-block waves-effect waves-light btn-primary ">
                                         <i class="far fa-edit"></i>
                                 </a>
                             </div>
