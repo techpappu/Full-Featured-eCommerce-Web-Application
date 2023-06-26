@@ -92,11 +92,11 @@
                                 <td width="300px">
                                     <div class="form-group d-flex">
                                         <select name="status" id="status" class="form-control p-0">
-                                            <option value="pending" {{$data['row']->status=='pending'? 'selected' : '' }}>pending</option>
-                                            <option value="processing" {{$data['row']->status=='processing'? 'selected' : '' }}>processing</option>
-                                            <option value="shipped" {{$data['row']->status=='shipped'? 'selected' : '' }}>shipped</option>
-                                            <option value="done" {{$data['row']->status=='done'? 'selected' : '' }}>done</option>
-                                            <option value="canceled" {{$data['row']->status=='canceled'? 'selected' : '' }}>canceled</option>
+                                            <option value="pending" {{$data['row']->status=='pending'? 'selected' : '' }}>Pending</option>
+                                            <option value="processing" {{$data['row']->status=='processing'? 'selected' : '' }}>Processing</option>
+                                            <option value="shipped" {{$data['row']->status=='shipped'? 'selected' : '' }}>Shipped</option>
+                                            <option value="done" {{$data['row']->status=='done'? 'selected' : '' }}>Done</option>
+                                            <option value="canceled" {{$data['row']->status=='canceled'? 'selected' : '' }}>Canceled</option>
                                         </select>
                                     </div>
                                 </td>
