@@ -21,11 +21,22 @@
             </div>
         </div>
         <div class="col-md-9">
+            <x-back-end.validationAlert></x-back-end.validationAlert>
             <form action="{{route('admin.user.post.update',$data['row']->id)}}" method="POST" id="form" enctype="multipart/form-data">
                 @csrf
                 <div class="card-box overflow-hidden">
+                    <h1 class="text-center">Roles</h1>
+                    <div class="form-group">
+                        <label for="role" class="required">Role</label>
+                        <select name="role" id="role" class="form-control">
+                            <option selected disabled hidden>Select A Role</option>
+                            @foreach ($data['roles'] as  $role)
+                                <option value="{{$role}}" {{$data['row']->hasRole($role) ? 'selected' : ''}}>{{$role}}</option>
+                            @endforeach
+                            
+                        </select>
+                    </div>
                     <h1 class="text-center">User</h1>
-                    <x-back-end.validationAlert></x-back-end.validationAlert>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="required">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" value="{{$data['row']->email}}" name="email" placeholder="Enter email">
@@ -103,9 +114,11 @@
     <script>
         $("#form").validate({
             rules: {
+                role:'required',
                 email: 'required',
             },
             messages: {
+                role:'Please Select a Role',
                 email: "Please enter an unique Email",
                 
             }

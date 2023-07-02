@@ -17,6 +17,17 @@
             <form action="{{route('admin.user.post.create')}}" method="POST" id="form" enctype="multipart/form-data">
                 @csrf
                 <div class="card-box overflow-hidden">
+                    <h1 class="text-center">Roles</h1>
+                    <div class="form-group">
+                        <label for="role" class="required">Role</label>
+                        <select name="role" id="role" class="form-control">
+                            <option selected disabled hidden>Select A Role</option>
+                            @foreach ($data['roles'] as  $role)
+                                <option value="{{$role}}">{{$role}}</option>
+                            @endforeach
+                            
+                        </select>
+                    </div>
                     <h1 class="text-center">User</h1>
                     <x-back-end.validationAlert></x-back-end.validationAlert>
                     <div class="form-group">
@@ -97,11 +108,13 @@
     <script>
         $("#form").validate({
             rules: {
+                role: 'required',
                 email: 'required',
                 password: 'required',
                 password_confirmation: 'required',
             },
             messages: {
+                role: 'Please Select a Role',
                 email: "Please enter an unique Email",
                 password: 'Please enter password',
                 password_confirmation: 'Please enter password confirmation',

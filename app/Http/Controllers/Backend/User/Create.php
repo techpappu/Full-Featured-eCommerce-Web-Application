@@ -19,7 +19,8 @@ class Create extends Controller
                 return redirect()->route('admin.user')->with('danger','user can not be created!');
             }
         }
-
-        return view('backend.user.create');
+        $data=[];
+        $data['roles']=\Facades\Spatie\Permission\Models\Role::pluck('name');
+        return view('backend.user.create',compact('data'));
     }
 }

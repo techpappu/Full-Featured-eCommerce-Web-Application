@@ -27,11 +27,6 @@ Route::get('/admin/dashboard', function () {
     return view('backend.dashboard');
 })->name('adminDashboard');
 
-
-# Back-end login - this is an alternative login for backend - user expected to register and login from front-end
-Route::get('/admin/login', \App\Http\Controllers\Backend\Index::class)->name('login');
-Route::post('/admin/login', \App\Http\Controllers\Backend\Index::class)->name('postLogin');
-
 # Back-end users - only admin role users will be accessing this module in backend to manage users
 Route::get('/admin/user', \App\Http\Controllers\Backend\User\Index::class)->name('admin.user');
 Route::get('/admin/user/create', \App\Http\Controllers\Backend\User\Create::class)->name('admin.user.create');

@@ -21,7 +21,7 @@ class Update extends Controller
         }
         $data=[];
         $data['row']=\Facades\App\Services\Backend\User::get($id);
-
+        $data['roles']=\Facades\Spatie\Permission\Models\Role::pluck('name');
         return view('backend.user.update',compact('data'));
     }
 }

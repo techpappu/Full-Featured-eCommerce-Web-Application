@@ -32,6 +32,7 @@ class User
     {   
 
         $request->validate([
+            'role' =>'required',
             'email' =>'required|string|email|max:255|unique:users',
             'password' =>'required|min:8|string|confirmed',
         ]);
@@ -39,6 +40,7 @@ class User
         $profiledata=$request->only(['first_name','last_name','address','city','district','postcode','phone']);
         $data['password']=Hash::make($data['password']);
         $row = \Facades\App\Models\User::create($data);
+        $row->assignRole($request->role);
         $row->profile()->create($profiledata);
         
         if($request->profile){
@@ -76,11 +78,15 @@ class User
             $data = $request->only(['email']);
 
         }
+        $request->validate([
+            'role' =>'required',
+        ]);
         
         $profiledata=$request->only(['first_name','last_name','address','city','district','postcode','phone']);
 
         if (!empty($row->id)) {
             $row->update($data);
+            $row->syncRoles($request->role);
             $row->profile()->update($profiledata);
 
             if($request->profile){

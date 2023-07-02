@@ -16,6 +16,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Actions</th>
@@ -27,6 +28,7 @@
                         <td>{{$row->id}}</td>
                         <td>{{$row->profile->first_name}} {{$row->profile->last_name}}</td>
                         <td>{{$row->email}}</td>
+                        <td>{{$row->roles()->first()->name}}</td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
                         <td>{{$row->updated_at->diffForHumans()}}</td>
                         <td>

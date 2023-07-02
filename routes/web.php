@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+# Back-end login - this is an alternative login for backend - user expected to register and login from front-end
+Route::get('/admin/login', \App\Http\Controllers\Backend\Index::class)->name('login');
+Route::post('/admin/login', \App\Http\Controllers\Backend\Index::class)->name('postLogin');
 
+
+
+# Front-end login - this is an alternative login for Front - user expected to register and login from front-end
 Route::get('/', \App\Http\Controllers\Frontend\Page\Landing::class)->name('home');
 Route::get('/login', \App\Http\Controllers\Frontend\Login::class)->name('frontend.login');
 Route::post('/login', \App\Http\Controllers\Frontend\Login::class)->name('frontend.login.post');
