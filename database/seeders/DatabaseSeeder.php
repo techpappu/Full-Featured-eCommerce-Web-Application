@@ -34,23 +34,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user=User::first();
+        $user->profile()->create(['first_name'=>'Admin']);
         $user->assignRole('Admin');
 
         $role=\Facades\Spatie\Permission\Models\Role::findByName('Admin');
 
-        // Get all route names from admin.php
-        $routes = collect(Route::getRoutes()->getRoutesByName())
-        ->filter(function ($route) {
-            return strpos($route->uri, 'admin') !== false;
-        })
-        ->keys();
-
-        // Output the route names
-        $data=[];
-        foreach ($routes as $routeName) {
-            $data['name']=$routeName;
-            $permission=\Facades\Spatie\Permission\Models\Permission::create($data);
+        // Get All Route of admin.php name make as Permission and attach to admin
+        $routes = Route::getRoutes();
+        $adminRoutes = [];
+    
+        foreach ($routes as $route) {
+            if (strpos($route->getName(), "admin") !== false ) {
+                $adminRoutes[] = $route;
+            }
         }
+    
+        $adminRouteNames = [];
+        foreach ($adminRoutes as $route) {
+            $adminRouteNames['name'] = $route->getName();
+            \Facades\Spatie\Permission\Models\Permission::create($adminRouteNames);
+        }
+        
         $role->givePermissionTo(\Facades\Spatie\Permission\Models\Permission::all());
     }
 }
