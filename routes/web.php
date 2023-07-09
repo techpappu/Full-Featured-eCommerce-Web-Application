@@ -46,6 +46,7 @@ Route::get('/product/{id}/{slug}', \App\Http\Controllers\Frontend\Product\Index:
 
 # Front-end cart page
 Route::get('/cart', \App\Http\Controllers\Frontend\Cart\Index::class)->name('cart');
+Route::post('/discount', \App\Http\Controllers\Frontend\Cart\Discount::class)->name('discount.post');
 
 # Front-end checkout pages
 Route::get('/checkout', \App\Http\Controllers\Frontend\Checkout\Index::class)->name('checkout');

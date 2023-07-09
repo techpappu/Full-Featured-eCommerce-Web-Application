@@ -58,12 +58,23 @@ class Invoice
                 $words  = str_replace( ',' , ' and' , $words );
             }
              
-            return $words;
+            return $words. $this->currencyInWord();
         }
         else if( ! ( ( int ) $num ) )
         {
             return 'Zero';
         }
         return '';
+    }
+
+    public function currencyInWord()
+    {
+        $data=\Facades\App\Models\Setting::first();
+        if ($data->currency_prefix=='BDT' || $data->currency_prefix=='bdt'){
+            return ' Take Only';
+        }
+        if ($data->currency_prefix=='$' || $data->currency_prefix=='USD'){
+            return ' Dollar Only';
+        }
     }
 }

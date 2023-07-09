@@ -31,11 +31,14 @@ class Invoice extends Model
     }
 
     /**
-     * Get the user associated with the Invoice
+     * Get the discount that owns the Invoice
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
+    }
     /**
      * Get the user that owns the Invoice
      *

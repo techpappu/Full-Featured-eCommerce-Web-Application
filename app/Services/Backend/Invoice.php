@@ -52,10 +52,12 @@ class Invoice
             $tax_total+=$tax->amount;
             $tax->update();
         }
-
+        if(!empty($invoice->discount_id)){
+            $invoice->discount_total=($gross_total/100)*$invoice->discount->rate;
+        }
         $invoice->gross_total=$gross_total;
         $invoice->tax_total=$tax_total;
-        $invoice->grand_total=$gross_total+$tax_total+$invoice->shipping_total;
+        $invoice->grand_total=$gross_total+$tax_total+$invoice->shipping_total-$invoice->discount_total;
 
         if(!empty($invoice)){
             $invoice->update();

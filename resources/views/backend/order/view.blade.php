@@ -95,6 +95,9 @@
                         <div class="col-sm-6">
                             <div class="text-right mt-4">
                                 <p><b>Sub-total:</b> {{$settings->currency_prefix}} {{$data['row']->gross_total}}</p>
+                                @if ($data['row']->discount_id)
+                                    <div class="checkout-subtotal">Discount ({{$data['row']->discount->label}}) {{$data['row']->discount->rate}}%: <span>{{$settings->currency_prefix}} - {{number_format((float)$data['row']->discount_total,2,'.','')}}</span></div><br>
+                                @endif
                                 <p>Shipping ({{$data['row']->shipping->label}}): <span>{{$settings->currency_prefix}} {{number_format((float)$data['row']->shipping->amount, 2, '.', '')}}</p>
                                     @foreach ($data['row']->invoiceTaxes as $taxes )
                                     <p>{{$taxes->label}}: <span>{{$settings->currency_prefix}} {{number_format((float)$taxes->amount,2,'.','')}}</span></p><br>

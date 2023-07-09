@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Http\Controllers\Frontend\Cart\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -15,6 +16,8 @@ class Checkout
         
         if(Auth::check()){
             $user = Auth::user();
+            $userProfile=$request->only(['first_name','last_name','address','city','district','postcode','phone']);
+            $user->profile()->update($userProfile);
         }else{
             $request->validate([
                 'email' =>'required|string|email|max:255|unique:users',
@@ -70,10 +73,25 @@ class Checkout
             $invoice->invoiceTaxes()->create($invoiceTaxesData);
         }
 
+        //IF discount code applied
+        if($request->discount_code){
+            $discount=\Facades\App\Models\Discount::where('code',$request->discount_code)->first();
+            if( (is_null($discount->quantity) || $discount->quantity > 0) && $discount->status=='active'){
+                $invoice->discount_id=$discount->id;
+                $invoice->discount_total=($totalPrice/100)*$discount->rate;
+                session()->forget('discount_code');
+                if(!is_null($discount->quantity)){
+                    $discount->quantity=$discount->quantity-1;
+                    $discount->update();
+                }
+                
+            }
+        }
+
         //update invoice other data 
         $invoice->gross_total=$totalPrice;
         $invoice->tax_total=$totalTax;
-        $invoice->grand_total=$invoice->shipping_total+$invoice->gross_total+$totalTax;
+        $invoice->grand_total=$invoice->shipping_total+$invoice->gross_total+$totalTax-$invoice->discount_total;
         $invoice->status='Pending';
         $invoice->update();
 

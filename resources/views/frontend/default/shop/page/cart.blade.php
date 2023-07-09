@@ -22,9 +22,11 @@
 
                 <tr>
                     <th>
-                        <form action="#" method="get" class="apply-coupon">
-                            <input class="search-field" type="text" placeholder="Coupon Code" value="" />
-                            <a href="#" class="button gray">Apply Coupon</a>
+                        <form action="{{route('discount.post')}}" method="POST" class="apply-coupon">
+                            <x-front-end.message></x-front-end.message>
+                            @csrf
+                            <input class="search-field" type="text" placeholder="Coupon Code" name="code" required />
+                            <input type="submit"  value="Apply Coupon">
                         </form>
 
                         <div class="cart-btns">
@@ -47,7 +49,7 @@
 
                 <tr>
                     <th>Cart Subtotal</th>
-                    <td><strong><span id="cart-total-amount">178.00</span></strong></td>
+                    <td><strong><span id="cart-total-amount">{{$settings->currency_prefix}} 00.00</span></strong></td>
                 </tr>
 
             </table>

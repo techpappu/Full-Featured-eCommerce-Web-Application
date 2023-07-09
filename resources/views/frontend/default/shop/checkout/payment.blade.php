@@ -117,7 +117,10 @@
 
                 <tr>
                     <th class="checkout-totals">
-                        <div class="checkout-subtotal">Subtotal: <span>{{$settings->currency_prefix}} {{$data['invoice']->gross_total}}</span></div><br>
+                        <div class="checkout-subtotal">Subtotal: <span>{{$settings->currency_prefix}} {{number_format((float)$data['invoice']->gross_total,2,'.','')}}</span></div><br>
+                        @if ($data['invoice']->discount_id)
+                            <div class="checkout-subtotal">Discount ({{$data['invoice']->discount->label}}) {{$data['invoice']->discount->rate}}%: <span>{{$settings->currency_prefix}} - {{number_format((float)$data['invoice']->discount_total,2,'.','')}}</span></div><br>
+                        @endif
                         <div class="checkout-subtotal">Shipping ({{$data['invoice']->shipping->label}}): <span>{{$settings->currency_prefix}} {{number_format((float)$data['invoice']->shipping->amount, 2, '.', '')}}</span></div><br>
                         @foreach ($data['invoice']->invoiceTaxes as $taxes )
                             <div class="checkout-subtotal">{{$taxes->label}}: <span>{{$settings->currency_prefix}} {{number_format((float)$taxes->amount,2,'.','')}}</span></div><br>

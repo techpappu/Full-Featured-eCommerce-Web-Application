@@ -55,6 +55,7 @@ $(document).ready(function () {
     refreshCart();
     refreshCartPage();
     refreshCheckoutPageItem();
+    checkCart();
 });
 
 function refreshCart() {
@@ -101,7 +102,7 @@ function refreshCartPage() {
         html += '</tr>';
     }
     $('table#cart-page-item').append(html);
-    carPagCartTotal();
+    cartPageCartTotal();
     $('.responsive-table').stacktable();
 }
 
@@ -163,7 +164,7 @@ function deleteItem(product_id) {
 
 }
 
-function carPagCartTotal() {
+function cartPageCartTotal() {
     $('#cart-total-amount').html("");
     var cartdata = JSON.parse(window.localStorage.getItem('cart'));
     var total = 0;
@@ -185,9 +186,22 @@ function printCartToCheakoutPage(){
         html+='<input type="hidden" name="quantity[]" value="' + cartdata[i].quantity +'"></input>' 
     }
     $('div.hidden-field').append(html);
-
+    checkCart();
 }
 
 function clearCart(){
     localStorage.removeItem('cart');
+}
+
+function checkCart() {
+    // Get the cart items from local storage
+    let cartItems = localStorage.getItem('cart');
+
+    // If the cart is empty, remove all field and popup empty message.
+    if (cartItems=='[]') {
+        $('#checkoutField').html('');
+        $('#cartEmpty').show();
+        $(".cart-btns.proceed").css("pointer-events", "none");
+        $(".cart-btns.proceed").css("background-color", "#606060");
+    }
 }

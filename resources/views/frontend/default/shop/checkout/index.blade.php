@@ -11,7 +11,14 @@
     @endsection
     @section('content')
     <!-- Container -->
-    <div class="container">
+    <div class="container" id="cartEmpty" style="display: none;text-align:center">
+        <div class="notification error closeable" >
+            <p>Your Cart is empty! click here  <b><a href="{{route('categories')}}">Shop</a></b></p>
+            <a class="close"></a>
+        </div>
+    </div>
+    
+    <div class="container" id="checkoutField">
         @if ($data['shippings']->count()>0)
             <!-- CHeckout Content / Start -->
             <form action="{{route('checkout.post')}}" method="POST">
@@ -32,7 +39,9 @@
                         <div class="hidden-field">
                         </div>
 
-
+                        @if (session()->has('discount_code'))
+                            <input type="hidden" name="discount_code" value="{{session()->get('discount_code')}}">
+                        @endif
                         <div class="half first">
                             <label>First Name: <abbr>*</abbr></label>
                             <input type="text" name="first_name" placeholder=""value="{{auth()->check() ? auth()->user()->profile->first_name : '' }}" />
@@ -63,7 +72,8 @@
 
                         <div class="half first">
                             <label>Email Adress: <abbr>*</abbr></label>
-                            <input type="text" name="email" placeholder="" value="{{auth()->check() ? auth()->user()->email : '' }}" />
+                            <input type="text" name="email" placeholder="" value="{{auth()->check() ? auth()->user()->email : '' }}"
+                            {{auth()->check() ? 'disabled' : '' }} />
                         </div>
 
                         <div class="half">

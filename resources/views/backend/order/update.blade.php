@@ -147,16 +147,18 @@
                                 <th colspan="4" class="text-right">Total:</th>
                                 <th>{{$settings->currency_prefix}} <span id="grossTotal">{{$data['row']->gross_total}}</span></th>
                             </tr>
-                            <tr>
-                                <td colspan="4" class="text-right">Discount:</td>
-                                <td>{{$settings->currency_prefix}} 0.00</td>
-                            </tr>
+                            @if ($data['row']->discount_id)
+                                <tr>
+                                    <td colspan="4" class="text-right">Discount ({{$data['row']->discount->label}}) {{$data['row']->discount->rate}}%:</td>
+                                    <td>{{$settings->currency_prefix}} - <span id="discount_total">{{number_format((float)$data['row']->discount_total,2,'.','')}}</span></td>
+                                </tr>
+                            @endif
                             <tr>
                                 <td colspan="4" class="text-right">Total Tax:</td>
                                 <td>{{$settings->currency_prefix}} <span id="taxTotal">{{number_format((float)$data['row']->tax_total,2,'.','')}}</span></td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="text-right">Shipping({{$data['row']->shipping->label}}):</td>
+                                <td colspan="4" class="text-right">Shipping ({{$data['row']->shipping->label}}):</td>
                                 <td>{{$settings->currency_prefix}} {{number_format((float)$data['row']->shipping->amount, 2, '.', '')}}</td>
                             </tr>
                             <tr>
@@ -181,9 +183,10 @@
     <script>
 
         var totalAmount = {{$data['row']->gross_total ?? 0}};
-        var discountAmount = 0;
+        var discountAmount = {{$data['row']->discount_total ?? 0}};
+        var discountRate={{$data['row']->discount_id ? $data['row']->discount->rate : 0}};
         var taxAmount = {{$data['row']->tax_total ?? 0}};
-        var taxRate=Math.ceil((100/totalAmount)*taxAmount);
+        var taxRate=((100/totalAmount)*taxAmount).toFixed(2);
         var shippingAmount = {{$data['row']->shipping->amount ?? 0}};
         var grandTotal = 0;
 
@@ -210,12 +213,19 @@
             window.totalAmount = 0;
 
             var hiddenAmounts = $('input[name="amounts[]"]');
-            console.log(hiddenAmounts);
 
             for(var i=0; i < hiddenAmounts.length; i++)
             {
                 window.totalAmount = parseFloat(window.totalAmount) + parseFloat(hiddenAmounts[i].value);
             }
+
+            if(window.discountRate > 0)
+            {
+                window.discountAmount=(window.totalAmount/100)*window.discountRate;
+                $('#discount_total').html(window.discountAmount.toFixed(2));
+
+            }
+
             $('#grossTotal').html(window.totalAmount.toFixed(2));
             window.taxAmount=(window.totalAmount/100)*window.taxRate;
             $('#taxTotal').html(window.taxAmount.toFixed(2));

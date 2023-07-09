@@ -31,7 +31,7 @@ class Discount
     {
         
         $request->validate([
-            'code'  =>'required|min:6',
+            'code'  =>'required|min:6|alpha_dash|unique:discounts',
             'label' =>'required|min:4',
             'status'=>'required',
             'rate'  =>'required',
@@ -47,7 +47,7 @@ class Discount
     {
         $row = \Facades\App\Models\Discount::find($id);
         $request->validate([
-            'code'  =>'required|min:6',
+            'code'  =>'required|min:6|alpha_dash|unique:discounts,code'.$id,
             'label' =>'required|min:4',
             'status'=>'required',
             'rate'  =>'required',

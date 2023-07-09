@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Checkout;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class Index extends Controller
 {
@@ -13,6 +14,15 @@ class Index extends Controller
     public function __invoke(Request $request)
     {
         if ($request->isMethod('POST')){
+            if(!auth()->check()){
+                $validator = Validator::make($request->all(), [
+                    'email' =>'required|string|email|max:255|unique:users',
+                ]);
+    
+                if($validator->fails()){
+                    return redirect()->route('frontend.login')->with('danger','This email "'.$request->email.'" has an account. Please Login!');
+                }
+            }
             $invoice=\Facades\App\Services\Frontend\Checkout::create($request);
 
             if(!empty($invoice->id)){

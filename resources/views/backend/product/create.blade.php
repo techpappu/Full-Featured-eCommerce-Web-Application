@@ -68,6 +68,16 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="meta_title">Meta Title</label>
+                    <input type="text" name="meta_title" id="meta_title" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="meta_description">Meta Description</label>
+                    <textarea name="meta_description" id="meta_description" class="form-control" cols="30" rows="5"></textarea>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="form-group col-md-6">

@@ -35,7 +35,7 @@ class Product
             'status'=>'required',
             
         ]);
-        $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status']);
+        $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status','meta_title','meta_description']);
         $row = \Facades\App\Models\Product::create($data);
         $row->categories()->sync($request->categories);
 
@@ -56,7 +56,7 @@ class Product
             'status'=>'required',
             
         ]);
-        $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status']);
+        $data = $request->only(['name','description','price','quantity','sale_price','sale_expiry_date','status','meta_title','meta_description']);
         $file=$row->getFirstMedia('product');
         $row->categories()->sync($request->categories);
 
