@@ -119,7 +119,7 @@
                         <li><a href="{{ route('admin.product.create') }}">Create New Product</a></li>
                     </ul>
                 </li>
-                <!--- Product sidebar -->
+                <!--- Order sidebar -->
                 <li>
                     <a href="javascript: void(0);">
                         <i class="ti-shopping-cart-full"></i>
@@ -129,6 +129,18 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{ route('admin.order') }}">All Orders</a></li>
                         <li><a href="{{ route('admin.order.create') }}">Create New Order</a></li>
+                    </ul>
+                </li>
+
+                <!--- WooCommerce sidebar -->
+                <li>
+                    <a href="javascript: void(0);" style="color:#3C285F">
+                        <i class="fab fa-wordpress" ></i>
+                        <span> WooCommerce </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a wire:navigate href="{{ route('admin.woo.orders') }}">All Orders</a></li>
                     </ul>
                 </li>
 

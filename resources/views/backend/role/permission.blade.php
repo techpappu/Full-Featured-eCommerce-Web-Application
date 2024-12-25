@@ -29,10 +29,10 @@
                     <tbody>
                         @foreach($data['rows'] as $row)
                             <tr>
-                                <td>{{ ucwords(str_replace("."," ",$row->name));  }}</td>
+                                <td>{{ ucwords(str_replace("."," ",$row->name))  }}</td>
                                 <td>
                                     <input type="checkbox" name="permissions[]" value="{{$row->id}}" @if(in_array($row->id,$data['allowedpermissions'])) checked="checked" @endif/>
-                                        
+
                                 </td>
                             </tr>
                         @endforeach

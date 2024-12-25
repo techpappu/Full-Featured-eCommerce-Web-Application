@@ -11,11 +11,12 @@
         <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
         <!-- App css -->
-        
-        
+
+
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css"  id="app-stylesheet" />
+        <livewire:styles />
         @yield('css')
 
     </head>
@@ -25,12 +26,12 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            
+
             <!-- Topbar Start -->
             <x-back-end.topbar.master></x-back-end.topbar>
             <!-- end Topbar -->
 
-            
+
             <!-- ========== Left Sidebar Start ========== -->
             <x-back-end.sidebar.master></x-back-end.sidebar.master>
             <!-- Left Sidebar End -->
@@ -41,10 +42,10 @@
 
             <div class="content-page">
                 <div class="content">
-                    
+
                     <!-- Start Content-->
                     <div class="container-fluid">
-                        
+
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -58,14 +59,14 @@
                                 </div>
                                 @yield('content')
                             </div>
-                        </div>     
-                        <!-- end page title --> 
-                        
+                        </div>
+                        <!-- end page title -->
+
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->
 
-                
+
 
                 <!-- Footer Start -->
                 <footer class="footer">
@@ -97,7 +98,7 @@
                 <h4 class="font-18 m-0 text-white">Theme Customizer</h4>
             </div>
             <div class="slimscroll-menu">
-        
+
                 <div class="p-4">
                     <div class="alert alert-warning" role="alert">
                         <strong>Customize </strong> the overall color scheme, layout, etc.
@@ -109,16 +110,16 @@
                         <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked />
                         <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
                     </div>
-            
+
                     <div class="mb-2">
                         <img src="{{asset('assets/images/layouts/dark.png')}}" class="img-fluid img-thumbnail" alt="">
                     </div>
                     <div class="custom-control custom-switch mb-3">
-                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css" 
+                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css"
                             data-appStyle="assets/css/app-dark.min.css" />
                         <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
                     </div>
-            
+
                     <div class="mb-2">
                         <img src="{{asset('assets/images/layouts/rtl.png')}}" class="img-fluid img-thumbnail" alt="">
                     </div>
@@ -131,8 +132,8 @@
         </div>
         <!-- /Right-bar -->
 
-        
 
+        <livewire:scripts />
         <!-- Vendor js -->
         <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
@@ -141,6 +142,6 @@
 
         <!-- App js -->
         <script src="{{asset('assets/js/app.min.js')}}"></script>
-        
+
     </body>
 </html>

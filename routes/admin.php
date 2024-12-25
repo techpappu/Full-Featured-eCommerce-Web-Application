@@ -124,7 +124,7 @@ Route::post('/admin/product/images/delete/{id}', \App\Http\Controllers\Backend\P
 Route::post('/admin/product/images/create', \App\Http\Controllers\Backend\Product\Image\Create::class)->name('admin.product.images.create');
 
 
-# Back-end orders - this section will be used to review orders and process them 
+# Back-end orders - this section will be used to review orders and process them
 Route::get('/admin/order', \App\Http\Controllers\Backend\Order\Index::class)->name('admin.order');
 Route::get('/admin/order/create', \App\Http\Controllers\Backend\Order\Create::class)->name('admin.order.create');
 Route::post('/admin/order/create', \App\Http\Controllers\Backend\Order\Create::class)->name('admin.order.post.create');
@@ -136,3 +136,6 @@ Route::get('/admin/order/view/{id}', \App\Http\Controllers\Backend\Order\View::c
 Route::get('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.setting');
 Route::post('/admin/setting', \App\Http\Controllers\Backend\Setting\Index::class)->name('admin.setting.post.update');
 
+
+# Back-end settings - this will be used to view and update shop settings
+Route::get('/admin/woo/orders','App\livewire\WooCommerce\Order')->name('admin.woo.orders');
