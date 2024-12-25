@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoice_taxes', function (Blueprint $table) {
             $table->id();
-            $table->integer('invoice_id');
+            $table->integer('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->integer('tax_id');
             $table->string('label', 100);
             $table->double('rate', 15, 2);

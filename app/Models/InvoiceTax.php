@@ -9,6 +9,8 @@ class InvoiceTax extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * Get the taxes that owns the InvoiceTax
      *
@@ -17,5 +19,10 @@ class InvoiceTax extends Model
     public function taxes()
     {
         return $this->belongsTo(Tax::class);
+    }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
     }
 }

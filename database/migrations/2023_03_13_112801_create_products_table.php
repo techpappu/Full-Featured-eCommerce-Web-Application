@@ -19,6 +19,8 @@ return new class extends Migration
             $table->double('quantity')->nullable();
             $table->double('sale_price', 15, 8)->nullable();
             $table->date('sale_expiry_date')->nullable();
+            $table->string('meta_title', 50)->nullable();
+            $table->string('meta_description', 100)->nullable();
             $table->string('status');
             $table->timestamps();
             $table->softDeletes();

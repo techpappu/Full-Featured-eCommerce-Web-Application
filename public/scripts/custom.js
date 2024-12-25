@@ -373,10 +373,10 @@
 			e.preventDefault();
 			thisrowfield = $(this).parent().parent().parent().find('.qty');
 			var currentVal = parseInt(thisrowfield.val());
-			if (!isNaN(currentVal) && currentVal > 0) {
+			if (!isNaN(currentVal) && currentVal > 1) {
 				thisrowfield.val(currentVal - 1);
 			} else {
-				thisrowfield.val(0);
+				thisrowfield.val(1);
 			}
 		});
 

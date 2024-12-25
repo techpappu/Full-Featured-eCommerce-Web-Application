@@ -14,9 +14,8 @@
 
 <!-- CSS
 ================================================== -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/colors/green.css" id="colors">
- 
+<x-front-end.resource.css></x-front-end.resource.css>
+ @yield('css')
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -25,59 +24,6 @@
 
 <body class="boxed">
 <div id="wrapper">
-
-
-<!-- Top Bar
-================================================== -->
-<div id="top-bar">
-	<div class="container">
-
-		<!-- Top Bar Menu -->
-		<div class="ten columns">
-			<ul class="top-bar-menu">
-				<li><i class="fa fa-phone"></i> (564) 123 4567</li>
-				<li><i class="fa fa-envelope"></i> <a href="#">mail@example.com</a></li>
-				<li>
-					<div class="top-bar-dropdown">
-						<span>English</span>
-						<ul class="options">
-							<li><div class="arrow"></div></li>
-							<li><a href="#">English</a></li>
-							<li><a href="#">Polish</a></li>
-							<li><a href="#">Deutsch</a></li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<div class="top-bar-dropdown">
-						<span>USD</span>
-						<ul class="options">
-							<li><div class="arrow"></div></li>
-							<li><a href="#">USD</a></li>
-							<li><a href="#">PLN</a></li>
-							<li><a href="#">EUR</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
-		
-		<!-- Social Icons -->
-		<div class="six columns">
-			<ul class="social-icons">
-				<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-				<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-				<li><a class="dribbble" href="#"><i class="icon-dribbble"></i></a></li>
-				<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-				<li><a class="pinterest" href="#"><i class="icon-pinterest"></i></a></li>
-			</ul>
-		</div>
-
-	</div>
-</div>
-
-<div class="clearfix"></div>
-
 
 <!-- Header
 ================================================== -->
@@ -104,11 +50,9 @@
 ================================================== -->
 
 <!-- Container -->
-<div class="container">
 
-	@yield('content')
+@yield('content')
 
-</div>
 <!-- Container / End -->
 
 <div class="margin-top-50"></div>
@@ -131,11 +75,11 @@
 		<div class="eight columns">© Copyright 2014 by <a href="#">trizzy</a>. All Rights Reserved.</div>
 		<div class="eight columns">
 			<ul class="payment-icons">
-				<li><img src="images/visa.png" alt="" /></li>
-				<li><img src="images/mastercard.png" alt="" /></li>
-				<li><img src="images/skrill.png" alt="" /></li>
-				<li><img src="images/moneybookers.png" alt="" /></li>
-				<li><img src="images/paypal.png" alt="" /></li>
+				<li><img src="{{asset('images/visa.png')}}" alt="" /></li>
+				<li><img src="{{asset('images/mastercard.png')}}" alt="" /></li>
+				<li><img src="{{asset('images/skrill.png')}}" alt="" /></li>
+				<li><img src="{{asset('images/moneybookers.png')}}" alt="" /></li>
+				<li><img src="{{asset('images/paypal.png')}}" alt="" /></li>
 			</ul>
 		</div>
 
@@ -153,34 +97,9 @@
 
 <!-- Java Script
 ================================================== -->
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="scripts/jquery.jpanelmenu.js"></script>
-<script src="scripts/jquery.themepunch.plugins.min.js"></script>
-<script src="scripts/jquery.themepunch.revolution.min.js"></script>
-<script src="scripts/jquery.themepunch.showbizpro.min.js"></script>
-<script src="scripts/jquery.magnific-popup.min.js"></script>
-<script src="scripts/hoverIntent.js"></script>
-<script src="scripts/superfish.js"></script>
-<script src="scripts/jquery.pureparallax.js"></script>
-<script src="scripts/jquery.pricefilter.js"></script>
-<script src="scripts/jquery.selectric.min.js"></script>
-<script src="scripts/jquery.royalslider.min.js"></script>
-<script src="scripts/SelectBox.js"></script>
-<script src="scripts/modernizr.custom.js"></script>
-<script src="scripts/waypoints.min.js"></script>
-<script src="scripts/jquery.flexslider-min.js"></script>
-<script src="scripts/jquery.counterup.min.js"></script>
-<script src="scripts/jquery.tooltips.min.js"></script>
-<script src="scripts/jquery.isotope.min.js"></script>
-<script src="scripts/puregrid.js"></script>
-<script src="scripts/stacktable.js"></script>
-<script src="scripts/custom.js"></script>
+<x-front-end.resource.js></x-front-end.resource.js>
 
-
-<!-- Style Switcher
-================================================== -->
-<script src="scripts/switcher.js"></script>
+@yield('script')
 
 <div id="style-switcher">
 	<h2>Style Switcher <a href="#"></a></h2>

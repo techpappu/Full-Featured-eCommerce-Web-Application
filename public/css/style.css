@@ -1422,7 +1422,7 @@ ul.delivery-options {
 	display: block !important;
 }
 
-.form-row-wide input {width: 100%;}
+.form-row-wide input {width: 100%;box-sizing: border-box;}
 .required {color: #d11c1c;}
 
 .rememberme {

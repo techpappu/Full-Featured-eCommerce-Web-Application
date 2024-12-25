@@ -1,3 +1,60 @@
+<!-- Top Bar
+================================================== -->
+<div id="top-bar">
+	<div class="container">
+
+		<!-- Top Bar Menu -->
+		<div class="ten columns">
+			<ul class="top-bar-menu">
+				@if (!empty($settings->phone))
+					<li><i class="fa fa-phone"></i>{{$settings->phone}}</li>
+				@endif
+				@if (!empty($settings->email))
+					<li><i class="fa fa-envelope"></i>
+						<a href="mailto:{{$settings->email}}">{{$settings->email}}</a>
+					</li>
+				@endif
+				{{-- <li>
+					<div class="top-bar-dropdown">
+						<span>English</span>
+						<ul class="options">
+							<li><div class="arrow"></div></li>
+							<li><a href="#">English</a></li>
+							<li><a href="#">Polish</a></li>
+							<li><a href="#">Deutsch</a></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					@if (!empty($settings->currency_prefix))
+						<div class="top-bar-dropdown">
+							<span>{{$settings->currency_prefix}}</span>
+						</div>
+					@endif
+				</li> --}}
+			</ul>
+		</div>
+		
+		<!-- Social Icons -->
+		<div class="six columns">
+			<ul class="social-icons">
+				@if (!empty($settings->facebook))
+					<li><a class="facebook" href="{{$settings->facebook}}"><i class="icon-facebook"></i></a></li>
+				@endif
+				@if (!empty($settings->twitter))
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+				@endif
+				@if (!empty($settings->youtube))
+					<li><a class="youtube" href="{{$settings->facebook}}"><i class="icon-youtube"></i></a></li>
+				@endif
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="clearfix"></div>
+
 <!-- Header
 ================================================== -->
 <div class="container">
@@ -5,7 +62,16 @@
 	<!-- Logo -->
 	<div class="four columns">
 			<div id="logo">
-				<h1><a href="{{route('home')}}"><img src="images/logo.png" alt="Trizzy" /></a></h1>
+				
+					<h1><a href="{{route('home')}}">
+						@if (!empty($settings->hasMedia('settings')))
+							<img src="{{$settings->getFirstMediaUrl('settings')}}" alt="Trizzy" />
+						@else
+						<img src="{{asset('/images/logo.png')}}" alt="Trizzy" />
+						@endif
+					</a></h1>
+				
+				
 			</div>
 	</div>
 	
@@ -14,10 +80,16 @@
 	<div class="twelve columns">
 		<div id="additional-menu">
 			<ul>
-				<li><a href="shopping-cart.html">Shopping Cart</a></li>
-				<li><a href="wishlist.html">WishList <span>(2)</span></a></li>
-				<li><a href="checkout-billing-details.html">Checkout</a></li>
-				<li><a href="my-account.html">My Account</a></li>
+				<li><a href="{{route('cart')}}">Shopping Cart</a></li>
+				@if (auth()->check())
+					<li><a href="my-account.html">My Account</a></li>
+					<li><a href="{{route('frontend.logout')}}">Logout</a></li>
+				@else
+					<li><a href="{{route('frontend.login')}}">Login</a></li>
+					<li><a href="{{route('frontend.register')}}">Register</a></li>
+				@endif
+				
+				
 			</ul>
 		</div>
 	</div>
@@ -26,47 +98,7 @@
 	<!-- Shopping Cart -->
 	<div class="twelve columns">
 
-		<div id="cart">
-				
-			<!-- Button -->
-			<div class="cart-btn">
-				<a href="#" class="button adc">$178.00</a>
-			</div>
-
-			<div class="cart-list">
-
-			<div class="arrow"></div>
-
-				<div class="cart-amount">
-					<span>2 items in the shopping cart</span>
-				</div>
-
-					<ul>
-						<li>
-							<a href="#"><img src="images/small_product_list_08.jpg" alt="" /></a>
-							<a href="#">Converse All Star Trainers</a>
-							<span>1 x $79.00</span>
-							<div class="clearfix"></div>
-						</li>
-
-						<li>
-							<a href="#"><img src="images/small_product_list_09.jpg" alt="" /></a>
-							<a href="#">Tommy Hilfiger <br /> Shirt Beat</a>
-							<span>1 x $99.00</span>
-							<div class="clearfix"></div>
-						</li>
-					</ul>
-
-				<div class="cart-buttons button">
-					<a href="shopping-cart.html" class="view-cart" ><span data-hover="View Cart"><span>View Cart</span></span></a>
-					<a href="checkout-billing-details.html" class="checkout"><span data-hover="Checkout">Checkout</span></a>
-				</div>
-				<div class="clearfix">
-
-				</div>
-			</div>
-
-		</div>
+		<x-front-end.header.cart></x-front-end.header.cart>
 
 		<!-- Search -->
 		<nav class="top-search">

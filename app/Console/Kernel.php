@@ -7,11 +7,16 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    protected $commands = [
+        Commands\SyncWooCommerceOrders::class,
+    ];
     /**
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule): void
     {
+        //$schedule->command('sync:woocommerce-orders')->everyMinute();
+        $schedule->command('sync:woocommerce-orders')->hourly();
         // $schedule->command('inspire')->hourly();
     }
 
@@ -24,4 +29,7 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+
+
 }
